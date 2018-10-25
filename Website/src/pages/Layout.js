@@ -1,10 +1,10 @@
 import React from "react"
 import { Route } from 'react-router-dom'
 
-import Rightbar from '../components/bar/Rightbar'
-import Leftbar from '../components/bar/Leftbar'
-import Headerbar from '../components/bar/Headerbar'
-import Footerbar from '../components/bar/Footerbar'
+import Rightbar from '../components/bar/rightbar/Rightbar'
+import Leftbar from '../components/bar/leftbar/Leftbar'
+import Headerbar from '../components/bar/headerbar/Headerbar'
+import Footerbar from '../components/bar/footerbar/Footerbar'
 
 export const GameLayout = ({
   component: Component,
