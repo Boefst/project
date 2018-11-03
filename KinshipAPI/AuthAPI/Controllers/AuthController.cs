@@ -1,13 +1,7 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using Microsoft.AspNetCore.Cors;
 using Newtonsoft.Json.Linq;
 using APIHelper;
 
@@ -97,7 +91,7 @@ namespace AuthAPI.Controllers {
                     dbConnection = Helper.OpenDBConnection("localhost", "kinship");
                     string deleteText = "DELETE FROM kinship_sessions WHERE user_id = @delete_id";
                     using (SqlCommand command = new SqlCommand(deleteText, dbConnection)) {
-                        command.Parameters.Add("@delete_id", SqlDbType.NVarChar);
+                        command.Parameters.Add("@delete_id", SqlDbType.Int);
                         command.Parameters["@delete_id"].Value = userID;
 
                         command.ExecuteReader();
@@ -118,8 +112,13 @@ namespace AuthAPI.Controllers {
         [Route("status")]
         public JObject CheckSession([FromHeader]string ClientID, [FromHeader]string ClientSecret) {
             JObject result = null;
-            int userID = Helper.GetUserID(ClientID, ClientSecret);
-
+            int userID = -1;
+            try {
+                userID = Helper.GetUserID(ClientID, ClientSecret);
+            }
+            catch (Exception e) {
+                result = Helper.BuildResult(500, "Internal Server Error", null, e.Message);
+            }
             if (userID == -1) {
                 result = Helper.BuildResult(404, "Not Found", null, "Session not found");
             }

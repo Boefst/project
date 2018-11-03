@@ -1,7 +1,12 @@
 USE kinship
 GO
 
-INSERT INTO kinship_support_tickets (ticket_title, ticket_text, sender_id, sent_time)
+INSERT INTO kinship_support_tickets (ticket_title, ticket_category, ticket_world, sender_id, create_time, ticket_status)
 VALUES
-	(N'Help', N'I need help', 1, CURRENT_TIMESTAMP)
+	(N'halp me', N'Question', N'world0', 1, CURRENT_TIMESTAMP, N'Unanswered'),
+	(N'dis player cheating', N'Report Player', N'world0', 2, CURRENT_TIMESTAMP, N'Unanswered'),
+	(N'troops bug', N'Bug', N'world0', 1, CURRENT_TIMESTAMP, N'Unanswered'),
+	(N'halp me', N'Question', N'world0', 1, CURRENT_TIMESTAMP, N'Unanswered'),
+	(N'dis player cheating', N'Report Player', N'world0', 3, CURRENT_TIMESTAMP, N'Unanswered'),
+	(N'troops bug', N'Bug', N'world0', 2, CURRENT_TIMESTAMP, N'Unanswered')
 GO

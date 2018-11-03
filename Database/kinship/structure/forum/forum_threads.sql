@@ -10,6 +10,8 @@ CREATE TABLE kinship_forum_threads(
 	title nvarchar(32) NOT NULL,
 	creator_id int NOT NULL,
 	create_time datetime NOT NULL,
+	deleted bit,
+	reason nvarchar(64),
 	CONSTRAINT PK_kinship_forum_threads PRIMARY KEY CLUSTERED (thread_id),     
 	CONSTRAINT FK_kinship_forum_threads_category FOREIGN KEY (category_id) REFERENCES kinship_forum_categories (category_id),
 	CONSTRAINT FK_kinship_forum_threads_user FOREIGN KEY (creator_id) REFERENCES kinship_accounts (user_id)

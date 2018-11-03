@@ -9,7 +9,10 @@ CREATE TABLE kinship_forum_messages(
 	thread_id int NOT NULL,
 	message_text nvarchar(256),
 	sender_id int NOT NULL,
+	is_admin bit NOT NULL,
 	sent_time datetime NOT NULL,
+	deleted bit,
+	reason nvarchar(64),
 	CONSTRAINT PK_kinship_forum_messages PRIMARY KEY CLUSTERED (message_id),     
 	CONSTRAINT FK_kinship_forum_messages_thread FOREIGN KEY (thread_id) REFERENCES kinship_forum_threads (thread_id),
 	CONSTRAINT FK_kinship_forum_messages_user FOREIGN KEY (sender_id) REFERENCES kinship_accounts (user_id)
