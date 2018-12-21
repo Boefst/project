@@ -9,18 +9,29 @@
     <app-id>com.mycompany.myapp</app-id>
     <unique-id>3745101g33ucz</unique-id>
     <saved-with-version>26500</saved-with-version>
-    <used-plugins />
+    <used-plugins>
+        <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
+        <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
+        <plugin author="Scirra" id="Function" version="1">Function</plugin>
+        <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
+        <plugin author="Scirra" id="Mouse" version="1">Mouse</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+        <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
+    </used-plugins>
     <used-behaviors />
     <used-effects />
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
     </configurations>
     <window-size>
-        <width>854</width>
-        <height>480</height>
+        <width>1920</width>
+        <height>1080</height>
     </window-size>
     <pixel-rounding>0</pixel-rounding>
     <preview-effects>1</preview-effects>
+    <first-layout>Village</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -37,15 +48,66 @@
         <prop name="Sampling">Linear</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
-    <object-folder />
+    <object-folder>
+        <object-type name="Ranking" sid="555755068546216">
+            <plugin id="Sprite" />
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="903734580388128" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="Mouse" sid="119985165871036">
+            <plugin id="Mouse" />
+        </object-type>
+        <object-type name="Touch" sid="920070963797890">
+            <plugin id="Touch" />
+        </object-type>
+        <object-type name="Keyboard" sid="158851251895788">
+            <plugin id="Keyboard" />
+        </object-type>
+        <object-type name="RankingList" sid="560308463038874">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="AJAX" sid="406441522698866">
+            <plugin id="AJAX" />
+        </object-type>
+        <object-type name="Function" sid="462498626237300">
+            <plugin id="Function" />
+        </object-type>
+        <object-type name="Browser" sid="346423815389509">
+            <plugin id="Browser" />
+        </object-type>
+        <object-type name="LocalStorage" sid="284207380835213">
+            <plugin id="LocalStorage" />
+        </object-type>
+        <object-type name="RankingList2" sid="311830485896405">
+            <plugin id="Text" />
+        </object-type>
+    </object-folder>
     <families />
     <layout-folder>
-        <layout>Layout 1.xml</layout>
+        <layout>Village.xml</layout>
+        <layout>Ranking.xml</layout>
     </layout-folder>
     <event-folder>
-        <event-sheet>Event sheet 1.xml</event-sheet>
+        <event-sheet>Village.xml</event-sheet>
+        <event-sheet>Ranking.xml</event-sheet>
+        <event-sheet>Receiver.xml</event-sheet>
     </event-folder>
-    <global-instances />
+    <global-instances>
+        <global-instance type="Mouse" uid="1" />
+        <global-instance type="Touch" uid="2">
+            <properties>
+                <use-mouse-input>Yes</use-mouse-input>
+            </properties>
+        </global-instance>
+        <global-instance type="Keyboard" uid="3" />
+        <global-instance type="AJAX" uid="6" />
+        <global-instance type="Function" uid="7" />
+        <global-instance type="Browser" uid="8" />
+        <global-instance type="LocalStorage" uid="9" />
+    </global-instances>
     <sounds-folder />
     <music-folder />
     <files-folder>
