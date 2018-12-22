@@ -155,7 +155,7 @@ namespace KinshipAPI.Controllers {
             return result;
         }
 
-        // GET api/forum/threads
+        // GET api/forum/threads/{category}
         [HttpGet]
         [Route("threads/{category}")]
         public JObject GetThreads([FromHeader]string ClientID, [FromHeader]string ClientSecret, int category) {
@@ -184,7 +184,7 @@ namespace KinshipAPI.Controllers {
                         int resultsAmount = 0;
                         while (myReader.Read()) {
                             JObject retThread = new JObject();
-                            retThread.Add("ThreadtID", (int)myReader["thread_id"]);
+                            retThread.Add("ThreadID", (int)myReader["thread_id"]);
                             retThread.Add("Title", (string)myReader["title"]);
                             retThread.Add("Name", (string)myReader["account_name"]);
                             retThread.Add("Created", (DateTime)myReader["create_time"]);
@@ -286,8 +286,8 @@ namespace KinshipAPI.Controllers {
             }
             return result;
         }
-        
-        // POST api/support/ticket/create
+
+        // POST api/forum/post/delete
         [HttpPost]
         [Route("post/delete")]
         public JObject DeletePost([FromHeader]string ClientID, [FromHeader]string ClientSecret, [FromBody]JObject Post) {
@@ -330,7 +330,7 @@ namespace KinshipAPI.Controllers {
             return result;
         }
 
-        // GET api/forum/post/{threadID}
+        // GET api/forum/posts/{threadID}
         [HttpGet]
         [Route("posts/{threadID}")]
         public JObject GetPosts([FromHeader]string ClientID, [FromHeader]string ClientSecret, int threadID) {
@@ -370,6 +370,51 @@ namespace KinshipAPI.Controllers {
                     Helper.CloseDBConnection(dbConnection);
                     JObject retObj = new JObject();
                     retObj.Add("Messages", retArr);
+                    result = Helper.BuildResult(200, "OK", retObj, "");
+                }
+                catch (Exception e) {
+                    result = Helper.BuildResult(500, "Internal Server Error", null, e.Message);
+                }
+            }
+            return result;
+        }
+
+        // GET api/forum/categories
+        [HttpGet]
+        [Route("categories")]
+        public JObject GetCategories([FromHeader]string ClientID, [FromHeader]string ClientSecret) {
+            JObject result = null;
+            int userID = -1;
+            SqlConnection dbConnection;
+            try {
+                userID = Helper.GetUserID(ClientID, ClientSecret);
+            }
+            catch (Exception e) {
+                result = Helper.BuildResult(500, "Internal Server Error", null, e.Message);
+            }
+            if (userID == -1) {
+                result = Helper.BuildResult(404, "Not Found", null, "Session not found");
+            }
+            else {
+                try {
+                    JArray retArr = new JArray();
+                    dbConnection = Helper.OpenDBConnection("localhost", "kinship");
+                    string insertText = "SELECT category_id, title FROM kinship_forum_categories";
+                    using (SqlCommand command = new SqlCommand(insertText, dbConnection)) {
+
+                        SqlDataReader myReader = command.ExecuteReader();
+                        int resultsAmount = 0;
+                        while (myReader.Read()) {
+                            JObject retCategory = new JObject();
+                            retCategory.Add("CategoryID", (int)myReader["category_id"]);
+                            retCategory.Add("Title", (string)myReader["title"]);
+                            retArr.Add(retCategory);
+                            resultsAmount++;
+                        }
+                    }
+                    Helper.CloseDBConnection(dbConnection);
+                    JObject retObj = new JObject();
+                    retObj.Add("Categories", retArr);
                     result = Helper.BuildResult(200, "OK", retObj, "");
                 }
                 catch (Exception e) {

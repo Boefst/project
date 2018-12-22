@@ -13,10 +13,12 @@ namespace APIHelper {
             result.Add("Message", message);
 
             if (ret == null) {
-                result.Add("Data", error);
+                result.Add("RetData", error);
             }
             else {
-                result.Add("Data", ret);
+                foreach (var item in ret) {
+                    result.Add(item.Key, item.Value);
+                }
             }
             return result;
         }
