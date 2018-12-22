@@ -10,11 +10,19 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <display name="HTML5" />
     </configurations>
     <open-tabs>
-        <layout order="0">Village</layout>
-        <layout order="2">Ranking</layout>
-        <event-sheet order="1">Village</event-sheet>
-        <event-sheet active="1" order="3">Ranking</event-sheet>
-        <event-sheet order="4">Receiver</event-sheet>
+        <layout order="2">Overview</layout>
+        <layout order="4">Ranking</layout>
+        <layout order="0">Login</layout>
+        <layout order="6">Account</layout>
+        <layout order="8">Forum</layout>
+        <layout order="10">Help</layout>
+        <event-sheet order="3">Overview</event-sheet>
+        <event-sheet order="5">Ranking</event-sheet>
+        <event-sheet order="12">Globals</event-sheet>
+        <event-sheet order="7">Account</event-sheet>
+        <event-sheet active="1" order="9">Forum</event-sheet>
+        <event-sheet order="11">Help</event-sheet>
+        <event-sheet order="1">Login</event-sheet>
     </open-tabs>
     <properties>
         <property expanded="1" name="About" />
@@ -31,6 +39,11 @@ you probably do not want to add any .uistate.xml files to the repository.-->
         <folder expanded="1" path="sound-folder/" />
         <folder expanded="1" path="music-folder/" />
         <folder expanded="0" path="file-folder/Icons/" />
-        <folder expanded="1" path="animation-folder/Ranking/" />
+        <folder expanded="1" path="animation-folder/ButtonBG/" />
+        <folder expanded="1" path="animation-folder/ErrorToast/" />
+        <folder expanded="1" path="animation-folder/LoginButtonBG/" />
+        <folder expanded="1" path="animation-folder/ForumThread/" />
+        <folder expanded="1" path="animation-folder/ForumCategory/" />
+        <folder expanded="1" path="animation-folder/ForumMessage/" />
     </folders-expanded>
 </c2uistate>

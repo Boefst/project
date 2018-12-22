@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Forum</name>
+    <events>
+        <variable constant="0" name="ForumState" sid="532339798546573" static="0" type="text">Cat</variable>
+        <include>Globals</include>
+        <event-block sid="250498634258758">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="283619479494881" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="947129954885894" type="Function">
+                    <param id="0" name="Name">&quot;GetCategories&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="572392653655889" title="GetCategories">
+            <sub-events>
+                <event-block sid="946044901960232">
+                    <conditions>
+                        <condition id="0" name="On function" sid="817941967317011" type="Function">
+                            <param id="0" name="Name">&quot;GetCategories&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="560129853751614" type="Function">
+                            <param id="0" name="Name">&quot;ResetForum&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="4" name="Set request header" sid="679167029986491" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientID&quot;</param>
+                            <param id="1" name="Value">ClientID</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="965448731256591" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientSecret&quot;</param>
+                            <param id="1" name="Value">ClientSecret</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="666759597855770" type="AJAX">
+                            <param id="0" name="Header">&quot;Content-Type&quot;</param>
+                            <param id="1" name="Value">&quot;application/json&quot;</param>
+                        </action>
+                        <action id="0" name="Request URL" sid="281047910138838" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetCategories&quot;</param>
+                            <param id="1" name="URL">&quot;http://localhost:5001/api/forum/categories&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="155655498159655">
+                    <conditions>
+                        <condition id="1" name="On error" sid="932477510432935" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetCategories&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Log" sid="973500221727872" type="Browser">
+                            <param id="0" name="Type">2</param>
+                            <param id="1" name="Message">&quot;Frontend: Unknown Error on GetCategories&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="179091399468425">
+                    <conditions>
+                        <condition id="0" name="On completed" sid="902547387712680" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetCategories&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Clear" sid="310350950156291" type="Dictionary" />
+                        <action id="4" name="Load" sid="368983472914309" type="Dictionary">
+                            <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:&quot;&amp;AJAX.LastData&amp;&quot;}&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="624059108471519" type="Function">
+                            <param id="0" name="Name">&quot;CheckStatus&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;GetCategories&quot;{###}Dictionary.Get(&quot;Status&quot;){###}Dictionary.Get(&quot;Message&quot;)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable constant="0" name="currentString" sid="661326229032983" static="0" type="text"></variable>
+                        <event-block sid="316085238481394">
+                            <conditions>
+                                <condition id="-12" name="Repeat" sid="407116879733402" type="System">
+                                    <param id="0" name="Count">tokencount(replace(tokenat(AJAX.LastData, 1, &quot;[&quot;), &quot;]&quot;, &quot;&quot;), &quot;},{&quot;)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="793899795306738" type="System">
+                                    <param id="0" name="Variable">currentString</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="519336938696860" type="System">
+                                    <param id="0" name="Variable">currentString</param>
+                                    <param id="1" name="Value">replace(replace(tokenat(replace(tokenat(AJAX.LastData, 1, &quot;[&quot;), &quot;]&quot;, &quot;&quot;), loopindex, &quot;},{&quot;), &quot;{&quot;, &quot;&quot;), &quot;}&quot;, &quot;&quot;)</param>
+                                </action>
+                                <action id="3" name="Clear" sid="758593807753631" type="Dictionary" />
+                                <action id="4" name="Load" sid="640968581691541" type="Dictionary">
+                                    <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:{&quot;&amp;currentString&amp;&quot;}}&quot;</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="177502955429461" type="System">
+                                    <param id="0" name="Object to create">ForumCategory</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">608</param>
+                                    <param id="3" name="Y">384+(loopindex*112)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="653384260648026" type="ForumCategory">
+                                    <param id="0" name="Instance variable">CategoryID</param>
+                                    <param id="1" name="Value">Dictionary.Get(&quot;CategoryID&quot;)</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="270589680021057" type="System">
+                                    <param id="0" name="Object to create">ForumCategoryTitle</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">410</param>
+                                    <param id="3" name="Y">378+(loopindex*112)</param>
+                                </action>
+                                <action id="2" name="Set font face" sid="411213292498454" type="ForumCategoryTitle">
+                                    <param id="0" name="Font face">&quot;Arial&quot;</param>
+                                    <param id="1" name="Style">1</param>
+                                </action>
+                                <action id="0" name="Set text" sid="565399821543016" type="ForumCategoryTitle">
+                                    <param id="0" name="Text">Dictionary.Get(&quot;Title&quot;)</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="778727116678391" type="System">
+                                    <param id="0" name="Object to create">ForumCategoryAuthor</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">410</param>
+                                    <param id="3" name="Y">402+(loopindex*112)</param>
+                                </action>
+                                <action id="2" name="Set font face" sid="463868378582291" type="ForumCategoryAuthor">
+                                    <param id="0" name="Font face">&quot;Arial&quot;</param>
+                                    <param id="1" name="Style">2</param>
+                                </action>
+                                <action id="0" name="Set text" sid="531584040766136" type="ForumCategoryAuthor">
+                                    <param id="0" name="Text">&quot;Description&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="275565250358159">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="951570212907096" type="System">
+                                    <param id="0" name="First value">Function.ReturnValue</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Log" sid="535677612208211" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Frontend: GetCategories Successful&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="479060455572375" title="GetThreads">
+            <sub-events>
+                <event-block sid="694005344937279">
+                    <conditions>
+                        <condition id="0" name="On function" sid="493224022893780" type="Function">
+                            <param id="0" name="Name">&quot;GetThreads&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="243567429612907" type="Function">
+                            <param id="0" name="Name">&quot;ResetForum&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="4" name="Set request header" sid="615101507708989" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientID&quot;</param>
+                            <param id="1" name="Value">ClientID</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="729058291381281" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientSecret&quot;</param>
+                            <param id="1" name="Value">ClientSecret</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="772270657684954" type="AJAX">
+                            <param id="0" name="Header">&quot;Content-Type&quot;</param>
+                            <param id="1" name="Value">&quot;application/json&quot;</param>
+                        </action>
+                        <action id="0" name="Request URL" sid="461218825184814" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetThreads&quot;</param>
+                            <param id="1" name="URL">&quot;http://localhost:5001/api/forum/threads/&quot;&amp;Function.Param(0)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="602339222591392">
+                    <conditions>
+                        <condition id="1" name="On error" sid="102411555386971" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetThreads&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Log" sid="533849533197869" type="Browser">
+                            <param id="0" name="Type">2</param>
+                            <param id="1" name="Message">&quot;Frontend: Unknown Error on GetThreads&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="436103163355071">
+                    <conditions>
+                        <condition id="0" name="On completed" sid="378997724577294" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetThreads&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Clear" sid="262651911880066" type="Dictionary" />
+                        <action id="4" name="Load" sid="112463267353320" type="Dictionary">
+                            <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:&quot;&amp;AJAX.LastData&amp;&quot;}&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="795082684184665" type="Function">
+                            <param id="0" name="Name">&quot;CheckStatus&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;GetThreads&quot;{###}Dictionary.Get(&quot;Status&quot;){###}Dictionary.Get(&quot;Message&quot;)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable constant="0" name="currentString" sid="383100617025194" static="0" type="text"></variable>
+                        <event-block sid="608794006006418">
+                            <conditions>
+                                <condition id="-12" name="Repeat" sid="582227415422510" type="System">
+                                    <param id="0" name="Count">tokencount(replace(tokenat(AJAX.LastData, 1, &quot;[&quot;), &quot;]&quot;, &quot;&quot;), &quot;},{&quot;)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="571061276500244" type="System">
+                                    <param id="0" name="Variable">currentString</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="922469729161214" type="System">
+                                    <param id="0" name="Variable">currentString</param>
+                                    <param id="1" name="Value">replace(replace(tokenat(replace(tokenat(AJAX.LastData, 1, &quot;[&quot;), &quot;]&quot;, &quot;&quot;), loopindex, &quot;},{&quot;), &quot;{&quot;, &quot;&quot;), &quot;}&quot;, &quot;&quot;)</param>
+                                </action>
+                                <action id="3" name="Clear" sid="841689022716698" type="Dictionary" />
+                                <action id="4" name="Load" sid="873956861974050" type="Dictionary">
+                                    <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:{&quot;&amp;currentString&amp;&quot;}}&quot;</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="835354309748419" type="System">
+                                    <param id="0" name="Object to create">ForumThread</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">608</param>
+                                    <param id="3" name="Y">384+(loopindex*80)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="313955005613050" type="ForumThread">
+                                    <param id="0" name="Instance variable">ThreadID</param>
+                                    <param id="1" name="Value">Dictionary.Get(&quot;ThreadID&quot;)</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="686545070562701" type="System">
+                                    <param id="0" name="Object to create">ForumThreadTitle</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">410</param>
+                                    <param id="3" name="Y">378+(loopindex*80)</param>
+                                </action>
+                                <action id="2" name="Set font face" sid="931119799771188" type="ForumThreadTitle">
+                                    <param id="0" name="Font face">&quot;Arial&quot;</param>
+                                    <param id="1" name="Style">1</param>
+                                </action>
+                                <action id="0" name="Set text" sid="188285079780018" type="ForumThreadTitle">
+                                    <param id="0" name="Text">Dictionary.Get(&quot;Title&quot;)</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="608612503087695" type="System">
+                                    <param id="0" name="Object to create">ForumThreadAuthor</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">410</param>
+                                    <param id="3" name="Y">402+(loopindex*80)</param>
+                                </action>
+                                <action id="2" name="Set font face" sid="193101861310958" type="ForumThreadAuthor">
+                                    <param id="0" name="Font face">&quot;Arial&quot;</param>
+                                    <param id="1" name="Style">2</param>
+                                </action>
+                                <action id="0" name="Set text" sid="796064210630396" type="ForumThreadAuthor">
+                                    <param id="0" name="Text">Dictionary.Get(&quot;Name&quot;)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="694860425085237">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="578965813897821" type="System">
+                                    <param id="0" name="First value">Function.ReturnValue</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Log" sid="894215477489420" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Frontend: GetThreads Successful&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="141695414458662" title="GetMessages">
+            <sub-events>
+                <event-block sid="618723306572797">
+                    <conditions>
+                        <condition id="0" name="On function" sid="123025582479829" type="Function">
+                            <param id="0" name="Name">&quot;GetMessages&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="439606977220193" type="Function">
+                            <param id="0" name="Name">&quot;ResetForum&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="4" name="Set request header" sid="640577570719167" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientID&quot;</param>
+                            <param id="1" name="Value">ClientID</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="883556214290217" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientSecret&quot;</param>
+                            <param id="1" name="Value">ClientSecret</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="704259000503489" type="AJAX">
+                            <param id="0" name="Header">&quot;Content-Type&quot;</param>
+                            <param id="1" name="Value">&quot;application/json&quot;</param>
+                        </action>
+                        <action id="0" name="Request URL" sid="552623322686084" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetMessages&quot;</param>
+                            <param id="1" name="URL">&quot;http://localhost:5001/api/forum/posts/&quot;&amp;Function.Param(0)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="920335365012879">
+                    <conditions>
+                        <condition id="1" name="On error" sid="482293101408191" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetMessages&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Log" sid="653491508602874" type="Browser">
+                            <param id="0" name="Type">2</param>
+                            <param id="1" name="Message">&quot;Frontend: Unknown Error on GetMessages&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="612698670928898">
+                    <conditions>
+                        <condition id="0" name="On completed" sid="853702961690921" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetMessages&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Clear" sid="248420685070758" type="Dictionary" />
+                        <action id="4" name="Load" sid="611272149307568" type="Dictionary">
+                            <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:&quot;&amp;AJAX.LastData&amp;&quot;}&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="593733057319585" type="Function">
+                            <param id="0" name="Name">&quot;CheckStatus&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;GetMessages&quot;{###}Dictionary.Get(&quot;Status&quot;){###}Dictionary.Get(&quot;Message&quot;)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable constant="0" name="currentString" sid="288713571920751" static="0" type="text"></variable>
+                        <event-block sid="326677263993193">
+                            <conditions>
+                                <condition id="-12" name="Repeat" sid="400707987609587" type="System">
+                                    <param id="0" name="Count">tokencount(replace(tokenat(AJAX.LastData, 1, &quot;[&quot;), &quot;]&quot;, &quot;&quot;), &quot;},{&quot;)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="516407344710191" type="System">
+                                    <param id="0" name="Variable">currentString</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="713471007728012" type="System">
+                                    <param id="0" name="Variable">currentString</param>
+                                    <param id="1" name="Value">replace(replace(tokenat(replace(tokenat(AJAX.LastData, 1, &quot;[&quot;), &quot;]&quot;, &quot;&quot;), loopindex, &quot;},{&quot;), &quot;{&quot;, &quot;&quot;), &quot;}&quot;, &quot;&quot;)</param>
+                                </action>
+                                <action id="3" name="Clear" sid="195453439628689" type="Dictionary" />
+                                <action id="4" name="Load" sid="134511213191290" type="Dictionary">
+                                    <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:{&quot;&amp;currentString&amp;&quot;}}&quot;</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="800699095707116" type="System">
+                                    <param id="0" name="Object to create">ForumMessage</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">608</param>
+                                    <param id="3" name="Y">352+(loopindex*140)</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="184487842744494" type="ForumMessage">
+                                    <param id="0" name="Instance variable">MessageID</param>
+                                    <param id="1" name="Value">Dictionary.Get(&quot;MessageID&quot;)</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="996510464911934" type="System">
+                                    <param id="0" name="Object to create">ForumMessageAuthor</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">160</param>
+                                    <param id="3" name="Y">352+(loopindex*140)</param>
+                                </action>
+                                <action id="2" name="Set font face" sid="377429644422654" type="ForumMessageAuthor">
+                                    <param id="0" name="Font face">&quot;Arial&quot;</param>
+                                    <param id="1" name="Style">1</param>
+                                </action>
+                                <action id="0" name="Set text" sid="297297816491560" type="ForumMessageAuthor">
+                                    <param id="0" name="Text">Dictionary.Get(&quot;Name&quot;)</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="884785355215818" type="System">
+                                    <param id="0" name="Object to create">ForumMessagePost</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">672</param>
+                                    <param id="3" name="Y">352+(loopindex*140)</param>
+                                </action>
+                                <action id="0" name="Set text" sid="607077555324782" type="ForumMessagePost">
+                                    <param id="0" name="Text">Dictionary.Get(&quot;Message&quot;)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="503705179629927">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="363156913499382" type="System">
+                                    <param id="0" name="First value">Function.ReturnValue</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Log" sid="748507624276727" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Frontend: GetThreads Successful&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="884533817760521">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="593835303616706" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">ForumCategory</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="803590405541648" type="Function">
+                    <param id="0" name="Name">&quot;GetThreads&quot;</param>
+                    <param id="1" name="Parameter {n}">ForumCategory.CategoryID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="146639697181743">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="860820048267676" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">ForumThread</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="555831727960300" type="Function">
+                    <param id="0" name="Name">&quot;GetMessages&quot;</param>
+                    <param id="1" name="Parameter {n}">ForumThread.ThreadID</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="424508280443655">
+            <conditions>
+                <condition id="0" name="On function" sid="953389195262747" type="Function">
+                    <param id="0" name="Name">&quot;ResetForum&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="528688941885646" type="ForumCategory" />
+                <action id="-9" name="Destroy" sid="249370509792328" type="ForumCategoryTitle" />
+                <action id="-9" name="Destroy" sid="601501277976868" type="ForumCategoryAuthor" />
+                <action id="-9" name="Destroy" sid="904246146047805" type="ForumThread" />
+                <action id="-9" name="Destroy" sid="200673353977526" type="ForumThreadTitle" />
+                <action id="-9" name="Destroy" sid="549537087828536" type="ForumThreadAuthor" />
+                <action id="-9" name="Destroy" sid="830826777916617" type="ForumMessage" />
+                <action id="-9" name="Destroy" sid="440986220585315" type="ForumMessagePost" />
+                <action id="-9" name="Destroy" sid="905415419842879" type="ForumMessageAuthor" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

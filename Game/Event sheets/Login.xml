@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Login</name>
+    <events>
+        <include>Globals</include>
+        <event-block sid="345922451422772">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="603803175572398" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">LoginButtonBG</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="187741208963862" type="Function">
+                    <param id="0" name="Name">&quot;Login&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="504499760835825">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="474203804919568" type="Keyboard">
+                    <param id="0" name="Key">13</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="459253360207329" type="Function">
+                    <param id="0" name="Name">&quot;Login&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="336541954295122">
+            <conditions>
+                <condition id="0" name="On function" sid="293561685368437" type="Function">
+                    <param id="0" name="Name">&quot;Login&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Set request header" sid="585139023605693" type="AJAX">
+                    <param id="0" name="Header">&quot;Content-Type&quot;</param>
+                    <param id="1" name="Value">&quot;application/json&quot;</param>
+                </action>
+                <action id="2" name="Post to URL" sid="830835362095777" type="AJAX">
+                    <param id="0" name="Tag">&quot;Login&quot;</param>
+                    <param id="1" name="URL">&quot;http://localhost:5000/api/auth/login&quot;</param>
+                    <param id="2" name="Data">&quot;{&apos;Username&apos;:&apos;&quot;&amp;LoginUsername.Text&amp;&quot;&apos;,&apos;Password&apos;:&apos;&quot;&amp;LoginPassword.Text&amp;&quot;&apos;,&apos;Ip-address&apos;:&apos;127.0.0.1&apos;}&quot;</param>
+                    <param id="3" name="Method">&quot;POST&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="675986911934952">
+            <conditions>
+                <condition id="1" name="On error" sid="478759067466676" type="AJAX">
+                    <param id="0" name="Tag">&quot;Login&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="14" name="Log" sid="944392252886894" type="Browser">
+                    <param id="0" name="Type">2</param>
+                    <param id="1" name="Message">&quot;Frontend: Unknown Error on Login&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="638529594190627">
+            <conditions>
+                <condition id="0" name="On completed" sid="402822299908620" type="AJAX">
+                    <param id="0" name="Tag">&quot;Login&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Clear" sid="709396434288369" type="Dictionary" />
+                <action id="4" name="Load" sid="753028239806114" type="Dictionary">
+                    <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:&quot;&amp;AJAX.LastData&amp;&quot;}&quot;</param>
+                </action>
+                <action id="0" name="Call function" sid="159785114210989" type="Function">
+                    <param id="0" name="Name">&quot;CheckStatus&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;Login&quot;{###}Dictionary.Get(&quot;Status&quot;){###}Dictionary.Get(&quot;Message&quot;)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="475447941948817">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="859544626979721" type="System">
+                            <param id="0" name="First value">Function.ReturnValue</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Log" sid="422864489554108" type="Browser">
+                            <param id="0" name="Type">0</param>
+                            <param id="1" name="Message">&quot;Frontend: Login Successful&quot;</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="515358548704641" type="System">
+                            <param id="0" name="Variable">ClientID</param>
+                            <param id="1" name="Value">Dictionary.Get(&quot;ClientID&quot;)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="916675617445528" type="System">
+                            <param id="0" name="Variable">ClientSecret</param>
+                            <param id="1" name="Value">Dictionary.Get(&quot;ClientSecret&quot;)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="662669839702532" type="System">
+                            <param id="0" name="Variable">UserID</param>
+                            <param id="1" name="Value">Dictionary.Get(&quot;UserID&quot;)</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="803381859942482" type="System">
+                            <param id="0" name="Layout">Overview</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>

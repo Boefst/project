@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Globals</name>
+    <events>
+        <variable constant="0" name="UserID" sid="251531561744592" static="0" type="number">-1</variable>
+        <variable constant="0" name="ClientID" sid="337232528668442" static="0" type="text"></variable>
+        <variable constant="0" name="ClientSecret" sid="412747783950664" static="0" type="text"></variable>
+        <event-block sid="594375780877720">
+            <conditions>
+                <condition id="-25" name="On loader layout complete" sid="594020179289898" type="System" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="110055894252110" type="System">
+                    <param id="0" name="Layout">Login</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="452453100980349">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="765836693760191" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">ButtonBG</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Call function" sid="447190409830894" type="Function">
+                    <param id="0" name="Name">&quot;CheckSession&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="704717241635048">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="441305778554378" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Overview&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="617987417547847" type="System">
+                            <param id="0" name="Layout">Overview</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="457494414196745">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="643995061854174" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Rank&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="159957500450099" type="System">
+                            <param id="0" name="Layout">Ranking</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="477811083211995">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="434165810861351" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Account&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="985272624319671" type="System">
+                            <param id="0" name="Layout">Account</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="632087973358831">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="395434843291365" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Forum&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="386142206737707" type="System">
+                            <param id="0" name="Layout">Forum</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="823013128679128">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="635538335381685" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Help&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="326861093017614" type="System">
+                            <param id="0" name="Layout">Help</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="539049211519722">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="745108512464472" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Logout&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="142164682000452" type="Function">
+                            <param id="0" name="Name">&quot;Logout&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="353113187929185" title="ErrorHandling">
+            <sub-events>
+                <event-block sid="103810621123634">
+                    <conditions>
+                        <condition id="0" name="On function" sid="968151759995643" type="Function">
+                            <param id="0" name="Name">&quot;CheckStatus&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="987248394584841">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="172760879265414" type="System">
+                                    <param id="0" name="First value">Function.Param(1)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">200</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Set return value" sid="433417808601201" type="Function">
+                                    <param id="0" name="Value">1</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="504594292442426">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="768716778926515" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="951041310868643" type="Function">
+                                    <param id="0" name="Name">&quot;DisplayError&quot;</param>
+                                    <param id="1" name="Parameter {n}">Function.Param(0){###}Function.Param(1){###}Function.Param(2)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="887708975929884">
+                    <conditions>
+                        <condition id="0" name="On function" sid="513655148000614" type="Function">
+                            <param id="0" name="Name">&quot;DisplayError&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Log" sid="615137448294983" type="Browser">
+                            <param id="0" name="Type">2</param>
+                            <param id="1" name="Message">&quot;Backend &quot;&amp;Function.Param(0)&amp;&quot;: &quot;&amp;Function.Param(1)&amp;&quot; (&quot;&amp;Function.Param(2)&amp;&quot;)&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable constant="0" name="ErrorMessage" sid="777824733622284" static="0" type="text"></variable>
+                        <event-block sid="788673852814861">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="565790443795435" type="System">
+                                    <param id="0" name="First value">Function.Param(0)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;Login&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="853721251183354">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="457095700698558" type="System">
+                                            <param id="0" name="First value">Function.Param(1)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">401</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="346301679799894" type="System">
+                                            <param id="0" name="Variable">ErrorMessage</param>
+                                            <param id="1" name="Value">&quot;Wrong Username or Password&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="860916566215269">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="985725423752098" type="System">
+                                    <param id="0" name="First value">Function.Param(0)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;Logout&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="333625066485637">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="557848682472109" type="System">
+                                            <param id="0" name="First value">Function.Param(1)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">404</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="9" name="Reload" sid="276159737144441" type="Browser" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="643361715249006">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="683596210920393" type="System">
+                                    <param id="0" name="First value">Function.Param(0)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;CheckSession&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="181231545318047">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="763150330592151" type="System">
+                                            <param id="0" name="First value">Function.Param(1)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">404</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="9" name="Reload" sid="133506774780927" type="Browser" />
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="628721744681087">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="132479824967156" type="System">
+                                    <param id="0" name="First value">Function.Param(0)</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">&quot;GetThreads&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="344043667801160">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="133910795510627" type="System">
+                                            <param id="0" name="First value">Function.Param(1)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">401</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="226304280171988" type="System">
+                                            <param id="0" name="Variable">ErrorMessage</param>
+                                            <param id="1" name="Value">&quot;Error getting threads&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="119562552329917">
+                            <conditions />
+                            <actions>
+                                <action id="14" name="Log" sid="763625226951902" type="Browser">
+                                    <param id="0" name="Type">2</param>
+                                    <param id="1" name="Message">ErrorMessage</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="350019088807044" type="System">
+                                    <param id="0" name="Object to create">ErrorToast</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">960</param>
+                                    <param id="3" name="Y">160</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="328029736036388" type="System">
+                                    <param id="0" name="Object to create">ErrorToastText</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">960</param>
+                                    <param id="3" name="Y">162</param>
+                                </action>
+                                <action id="0" name="Set text" sid="687762489568992" type="ErrorToastText">
+                                    <param id="0" name="Text">ErrorMessage</param>
+                                </action>
+                                <action id="-16" name="Wait" sid="807781421385749" type="System">
+                                    <param id="0" name="Seconds">2</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="480633383645076" type="ErrorToast" />
+                                <action id="-9" name="Destroy" sid="480344896730198" type="ErrorToastText" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="595706764775920" title="Logout">
+            <sub-events>
+                <event-block sid="504818927712652">
+                    <conditions>
+                        <condition id="0" name="On function" sid="712468751401078" type="Function">
+                            <param id="0" name="Name">&quot;Logout&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set request header" sid="632881225678829" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientID&quot;</param>
+                            <param id="1" name="Value">ClientID</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="365678359803112" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientSecret&quot;</param>
+                            <param id="1" name="Value">ClientSecret</param>
+                        </action>
+                        <action id="0" name="Request URL" sid="666764423653136" type="AJAX">
+                            <param id="0" name="Tag">&quot;Logout&quot;</param>
+                            <param id="1" name="URL">&quot;http://localhost:5000/api/auth/logout&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="115145684220763">
+                    <conditions>
+                        <condition id="1" name="On error" sid="962828602331855" type="AJAX">
+                            <param id="0" name="Tag">&quot;Logout&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Log" sid="920981902514561" type="Browser">
+                            <param id="0" name="Type">2</param>
+                            <param id="1" name="Message">&quot;Frontend: Unknown Error on Logout&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="106911818165856">
+                    <conditions>
+                        <condition id="0" name="On completed" sid="147280165851963" type="AJAX">
+                            <param id="0" name="Tag">&quot;Logout&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Clear" sid="789632737029139" type="Dictionary" />
+                        <action id="4" name="Load" sid="352055910918118" type="Dictionary">
+                            <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:&quot;&amp;AJAX.LastData&amp;&quot;}&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="655072661489435" type="Function">
+                            <param id="0" name="Name">&quot;CheckStatus&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Logout&quot;{###}Dictionary.Get(&quot;Status&quot;){###}Dictionary.Get(&quot;Message&quot;)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="822000539110420">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="159462260394510" type="System">
+                                    <param id="0" name="First value">Function.ReturnValue</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Log" sid="695639542976006" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Frontend: Logout Successful&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="366361907204355" type="System">
+                                    <param id="0" name="Variable">ClientID</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="781356282953181" type="System">
+                                    <param id="0" name="Variable">ClientSecret</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="774073556857019" type="System">
+                                    <param id="0" name="Variable">UserID</param>
+                                    <param id="1" name="Value">-1</param>
+                                </action>
+                                <action id="-2" name="Go to layout" sid="637117739094958" type="System">
+                                    <param id="0" name="Layout">Login</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="247808277551947" title="CheckSession">
+            <sub-events>
+                <event-block sid="367241492400266">
+                    <conditions>
+                        <condition id="0" name="On function" sid="619351298917351" type="Function">
+                            <param id="0" name="Name">&quot;CheckSession&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set request header" sid="794077277477699" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientID&quot;</param>
+                            <param id="1" name="Value">ClientID</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="454718449184500" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientSecret&quot;</param>
+                            <param id="1" name="Value">ClientSecret</param>
+                        </action>
+                        <action id="0" name="Request URL" sid="617801418921846" type="AJAX">
+                            <param id="0" name="Tag">&quot;CheckSession&quot;</param>
+                            <param id="1" name="URL">&quot;http://localhost:5000/api/auth/status&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="271758467940911">
+                    <conditions>
+                        <condition id="1" name="On error" sid="723242755531113" type="AJAX">
+                            <param id="0" name="Tag">&quot;CheckSession&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Log" sid="996907032835994" type="Browser">
+                            <param id="0" name="Type">2</param>
+                            <param id="1" name="Message">&quot;Frontend: Unknown Error on CheckSession&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="433415811713542">
+                    <conditions>
+                        <condition id="0" name="On completed" sid="662514045654845" type="AJAX">
+                            <param id="0" name="Tag">&quot;CheckSession&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Clear" sid="688334651405303" type="Dictionary" />
+                        <action id="4" name="Load" sid="925870859403478" type="Dictionary">
+                            <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:&quot;&amp;AJAX.LastData&amp;&quot;}&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="980093030576249" type="Function">
+                            <param id="0" name="Name">&quot;CheckStatus&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;CheckSession&quot;{###}Dictionary.Get(&quot;Status&quot;){###}Dictionary.Get(&quot;Message&quot;)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="849402781596430">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="984093800587066" type="System">
+                                    <param id="0" name="First value">Function.ReturnValue</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Log" sid="233557177424251" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Frontend: CheckSession Successful&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="512264059241941">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="304462440103818" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="690160786801446" type="Function">
+                                    <param id="0" name="Name">&quot;Logout&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>
