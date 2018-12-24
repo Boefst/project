@@ -117,6 +117,9 @@
         </object-type>
         <object-type name="HeaderMenuText" sid="134108051623868">
             <plugin id="Text" />
+            <instance-variables>
+                <instance-variable name="Type" sid="473307794692831" type="string" />
+            </instance-variables>
         </object-type>
         <object-type name="MenuText" sid="428113786682924">
             <plugin id="Text" />
@@ -184,21 +187,32 @@
     <families />
     <layout-folder>
         <layout>Overview.xml</layout>
-        <layout>Ranking.xml</layout>
+        <layout>Rank.xml</layout>
         <layout>Login.xml</layout>
         <layout>Account.xml</layout>
         <layout>Forum.xml</layout>
         <layout>Help.xml</layout>
+        <layout>Premium.xml</layout>
+        <layout>World.xml</layout>
+        <layout>Tribe.xml</layout>
+        <layout>Reports.xml</layout>
+        <layout>Posts.xml</layout>
+        <layout>Settings.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Overview.xml</event-sheet>
-        <event-sheet>Ranking.xml</event-sheet>
-        <event-sheet>Receiver.xml</event-sheet>
+        <event-sheet>Rank.xml</event-sheet>
         <event-sheet>Login.xml</event-sheet>
         <event-sheet>Globals.xml</event-sheet>
         <event-sheet>Account.xml</event-sheet>
         <event-sheet>Forum.xml</event-sheet>
         <event-sheet>Help.xml</event-sheet>
+        <event-sheet>Premium.xml</event-sheet>
+        <event-sheet>World.xml</event-sheet>
+        <event-sheet>Tribe.xml</event-sheet>
+        <event-sheet>Reports.xml</event-sheet>
+        <event-sheet>Posts.xml</event-sheet>
+        <event-sheet>Settings.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Mouse" uid="1" />

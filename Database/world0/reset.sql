@@ -1,6 +1,0 @@
-USE master
-GO
-
-DROP DATABASE IF EXISTS world0
-CREATE DATABASE world0
-GO

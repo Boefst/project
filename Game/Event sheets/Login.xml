@@ -58,9 +58,9 @@
                 </condition>
             </conditions>
             <actions>
-                <action id="14" name="Log" sid="944392252886894" type="Browser">
-                    <param id="0" name="Type">2</param>
-                    <param id="1" name="Message">&quot;Frontend: Unknown Error on Login&quot;</param>
+                <action id="0" name="Call function" sid="870200150469052" type="Function">
+                    <param id="0" name="Name">&quot;DisplayError&quot;</param>
+                    <param id="1" name="Parameter {n}">&quot;Login&quot;{###}400{###}&quot;Server not responding&quot;</param>
                 </action>
             </actions>
         </event-block>

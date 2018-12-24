@@ -1,0 +1,226 @@
+Travian ideas
+Farm any tile
+Modular village, specialise
+
+~~Resources
+
+Wood
+Stone
+Iron
+Food, Villagers
+Gold
+
+~~Buildings
+
+Headquarters		Build and upgrade buidlings
+Rally point		Send/Manage troops
+Barracks		Upgrade milita to infantry	
+Stables			Upgrade milita or infantry to horse riders
+Workshop		Upgrade milita or infantry to siege weapons
+
+Woodcutter		Provides Wood to the village
+Quarry			Provides Stone to the village
+Iron mine		Provides Iron to the village
+Farm			Provides Food to the village
+Palace			Provides Gold to the village
+
+Warehouse		Stores building resources
+Barn			Stores food
+Bank			Stores gold
+Market			Trade
+Houses			Amount of villagers
+
+Monastery		Train missonary
+Academy			Research troops, train nobles
+University		Research Upgrades to buildings
+Wall			Increases troops defence
+Tower			See incomming attacks
+
+~~University Research
+Headquarters	Crane		Building speed headquarters
+
+Rally point	Calculation	See arrival time for troops
+
+Barracks	Armory		Recruit speed Barracks
+Stable		Ranch		Recruit speed Stable
+Workshop	Arsenal		Recruit speed Workshop
+	
+Woodcutter	Forager		Increase wood production
+		Sawmill		Increase wood production
+
+Quarry		Stonecutter	Increase stone production
+		Masonry		Increase stone production
+
+Ironmine	Blacksmith	Increase iron production
+		Forge		Increase iron production
+
+Farm		Mill		Increase food production
+		Bakery		Increase food production
+
+Palace		Tax		Increase gold production
+		Statue		Increase gold production
+
+Warehouse	Stockpile	Increase warehouse space
+Barn		Granary		Increase barn space
+Bank		Vault		Increase gold space
+Market		Trade Cart	Faster trades
+		Caravan		Each trader can carry more
+		Bazaar		Trade one resource for another		
+Houses		
+		Cranny		Hides more resources from attackers
+
+
+Monastery	Shrine		Increase faith recovery
+		Temple		Increase faith recovery	
+
+Academy		Recruiter	Decrease research time 25%
+		Training camp	Decrease research time 50%
+
+University	School		Decrease research time 25%
+		Library		Decrease research time 50%
+
+Wall		Traps		Increases wall defense bonus
+		Garrison	Sets a base defense
+		Mound		Increases wal defense bonus
+
+Tower		Watch		See incoming attacks 20% further away
+		Patrol		See incoming attacks 20% further away
+
+~~Troops
+Milita		Swordsman	Champion	
+Spearman	Pikeman		Halberdier
+Warrior		Axeman		Berserker
+Slinger		Archer		Crossbowman
+
+Scout		Eagle scout	Pathfinder
+Light cavalry	Knight		Hussar
+Heavy cavalry	Cataphract	Paladin
+Cavalry archer	Chariot Archer
+
+Battering ram	Siege ram
+Mangonel	Catapult	Trebuchet
+Ballista	Onager		Scorpio
+
+~~Village size
+Encampment
+Outpost
+Hamlet
+Settlement
+Town
+City
+
+Take a village:
+Destroy palace and noble, faster
+Take over with missionary, place in village and wait, takes more time
+
+Pages:
+Village
+	Database
+	Troops
+		Database
+		API GetTroopsVillage
+	Buildings
+		Database
+		API GetBuildingsVillage
+		Button buildings
+			Route
+			GetBuildingInfo {param}
+	Resources
+		Database
+		API GetResourcesVillage
+Overview
+	Villages
+	Commands
+	Troops
+Map
+	Map
+	Minimap
+	Search
+	HoverMenu
+		Attack
+		Player
+		Commands
+		Troops
+Reports
+	List
+	Filter
+	Read
+		Subject
+		Time
+		Content
+		Delete
+		Forward
+	Delete
+	Forward
+Message/Chat
+	Active chats
+	Save Message
+	MassSend (Kinship)
+		Anti spam
+		Color
+	Block
+	Forward
+	Group
+Rank
+	Player
+	Kinship
+	Warpoints
+	Kontinent
+Kinship
+	Create
+	Profile
+	Settings
+	Members
+	Diplomacy
+	Recruit
+	Noticeboard
+Account
+	Profile
+	Account settings
+		Game
+		Shared internet settings
+		Account Info
+	Achievements
+	Friends
+Premium
+	Buy points
+	Buy stuff
+	Transfer
+	Log
+Game Forum/Info (integrated in game)
+	Announcements
+	Suggestions
+	Questions
+	Bug reports
+	Guides and Help
+	Off-Topic
+	Worlds
+Help
+	Wiki
+		Buildings
+		Units
+	Report article
+Support
+	FAQ
+		Categories
+		Search
+	Issues
+		Open existings
+			Read
+			Update
+		Create New
+			Category
+			Subject
+			Message
+			Attachment
+			Buttons
+Invite players
+	Email
+		Email
+		Text
+		From
+		To
+	Link
+		Facebook
+		Twitter
+		Google

@@ -50,12 +50,12 @@
                         <condition id="-7" name="Compare instance variable" sid="643995061854174" type="ButtonBG">
                             <param id="0" name="Instance variable">Type</param>
                             <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;Rank&quot;</param>
+                            <param id="2" name="Value">&quot;World&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-2" name="Go to layout" sid="159957500450099" type="System">
-                            <param id="0" name="Layout">Ranking</param>
+                            <param id="0" name="Layout">World</param>
                         </action>
                     </actions>
                 </event-block>
@@ -64,12 +64,12 @@
                         <condition id="-7" name="Compare instance variable" sid="434165810861351" type="ButtonBG">
                             <param id="0" name="Instance variable">Type</param>
                             <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;Account&quot;</param>
+                            <param id="2" name="Value">&quot;Tribe&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-2" name="Go to layout" sid="985272624319671" type="System">
-                            <param id="0" name="Layout">Account</param>
+                            <param id="0" name="Layout">Tribe</param>
                         </action>
                     </actions>
                 </event-block>
@@ -78,12 +78,12 @@
                         <condition id="-7" name="Compare instance variable" sid="395434843291365" type="ButtonBG">
                             <param id="0" name="Instance variable">Type</param>
                             <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;Forum&quot;</param>
+                            <param id="2" name="Value">&quot;Reports&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-2" name="Go to layout" sid="386142206737707" type="System">
-                            <param id="0" name="Layout">Forum</param>
+                            <param id="0" name="Layout">Reports</param>
                         </action>
                     </actions>
                 </event-block>
@@ -92,11 +92,95 @@
                         <condition id="-7" name="Compare instance variable" sid="635538335381685" type="ButtonBG">
                             <param id="0" name="Instance variable">Type</param>
                             <param id="1" name="Comparison">0</param>
-                            <param id="2" name="Value">&quot;Help&quot;</param>
+                            <param id="2" name="Value">&quot;Posts&quot;</param>
                         </condition>
                     </conditions>
                     <actions>
                         <action id="-2" name="Go to layout" sid="326861093017614" type="System">
+                            <param id="0" name="Layout">Posts</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="461234270996364">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="920191915117056" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Rank&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="344204283877792" type="System">
+                            <param id="0" name="Layout">Rank</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="739266633643585">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="107455490073032" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Account&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="116662520952327" type="System">
+                            <param id="0" name="Layout">Account</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="391294036461735">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="147935206198218" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Settings&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="957454146698699" type="System">
+                            <param id="0" name="Layout">Settings</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="913045472307607">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="678145569984975" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Premium&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="930673809827808" type="System">
+                            <param id="0" name="Layout">Premium</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="429887873402987">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="944903512685603" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Forum&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="578957889627262" type="System">
+                            <param id="0" name="Layout">Forum</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="560091522969200">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="369203923655051" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Help&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="340633862075505" type="System">
                             <param id="0" name="Layout">Help</param>
                         </action>
                     </actions>
@@ -191,6 +275,22 @@
                                         <action id="-9" name="Set value" sid="346301679799894" type="System">
                                             <param id="0" name="Variable">ErrorMessage</param>
                                             <param id="1" name="Value">&quot;Wrong Username or Password&quot;</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="485845821207306">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="765737243979487" type="System" />
+                                        <condition id="-8" name="Compare two values" sid="439389607811686" type="System">
+                                            <param id="0" name="First value">Function.Param(1)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">400</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="840382154528292" type="System">
+                                            <param id="0" name="Variable">ErrorMessage</param>
+                                            <param id="1" name="Value">&quot;Server not responding&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>

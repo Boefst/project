@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <c2layout>
-    <name>Account</name>
-    <sid>266853749345783</sid>
-    <event-sheet>Account</event-sheet>
+    <name>Posts</name>
+    <sid>226234639260589</sid>
+    <event-sheet>Posts</event-sheet>
     <size>
         <width>1920</width>
         <height>1080</height>
@@ -13,7 +13,7 @@
     </margins>
     <unbounded-scrolling>0</unbounded-scrolling>
     <layers>
-        <layer name="Layer 0" sid="708359314014969">
+        <layer name="Layer 0" sid="727083359329028">
             <initially-visible>1</initially-visible>
             <background-color>255,255,255</background-color>
             <transparent>0</transparent>
@@ -29,7 +29,7 @@
             <blend-mode>0</blend-mode>
             <effect-fallback>0</effect-fallback>
             <instances>
-                <instance type="ButtonBG" uid="175">
+                <instance type="ButtonBG" uid="125">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -54,7 +54,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="176">
+                <instance type="ButtonBG" uid="126">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -79,7 +79,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="177">
+                <instance type="ButtonBG" uid="127">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -104,7 +104,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="178">
+                <instance type="ButtonBG" uid="128">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -129,7 +129,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="179">
+                <instance type="ButtonBG" uid="129">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -154,7 +154,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="180">
+                <instance type="ButtonBG" uid="130">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -179,7 +179,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="181">
+                <instance type="HeaderMenuText" uid="131">
                     <properties>
                         <text>Forum</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -209,7 +209,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="182">
+                <instance type="HeaderMenuText" uid="132">
                     <properties>
                         <text>Help</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -239,7 +239,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="183">
+                <instance type="HeaderMenuText" uid="133">
                     <properties>
                         <text>Rank</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -269,7 +269,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="184">
+                <instance type="HeaderMenuText" uid="134">
                     <properties>
                         <text>Account</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -299,7 +299,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="185">
+                <instance type="HeaderMenuText" uid="135">
                     <properties>
                         <text>Overview</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -329,7 +329,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="186">
+                <instance type="HeaderMenuText" uid="136">
                     <properties>
                         <text>Logout</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -359,9 +359,9 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="MenuText" uid="187">
+                <instance type="MenuText" uid="137">
                     <properties>
-                        <text>Account</text>
+                        <text>Posts</text>
                         <initial-visibility>Visible</initial-visibility>
                         <font>Arial Rounded MT Bold,-48,400,0</font>
                         <color>0,0,0</color>
@@ -386,7 +386,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="188">
+                <instance type="ButtonBG" uid="138">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -411,7 +411,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="189">
+                <instance type="HeaderMenuText" uid="139">
                     <properties>
                         <text>World</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -441,7 +441,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="190">
+                <instance type="ButtonBG" uid="140">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -466,7 +466,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="191">
+                <instance type="HeaderMenuText" uid="141">
                     <properties>
                         <text>Premium</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -496,7 +496,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="192">
+                <instance type="ButtonBG" uid="142">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -521,7 +521,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="193">
+                <instance type="HeaderMenuText" uid="143">
                     <properties>
                         <text>Settings</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -551,7 +551,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="194">
+                <instance type="ButtonBG" uid="144">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -576,7 +576,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="195">
+                <instance type="HeaderMenuText" uid="145">
                     <properties>
                         <text>Tribe</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -606,7 +606,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="196">
+                <instance type="ButtonBG" uid="146">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -631,7 +631,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="197">
+                <instance type="HeaderMenuText" uid="147">
                     <properties>
                         <text>Reports</text>
                         <initial-visibility>Visible</initial-visibility>
@@ -661,7 +661,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="ButtonBG" uid="198">
+                <instance type="ButtonBG" uid="148">
                     <properties>
                         <initial-visibility>Visible</initial-visibility>
                         <initial-animation>Default</initial-animation>
@@ -686,7 +686,7 @@
                         <opacity>1</opacity>
                     </world>
                 </instance>
-                <instance type="HeaderMenuText" uid="199">
+                <instance type="HeaderMenuText" uid="149">
                     <properties>
                         <text>Posts</text>
                         <initial-visibility>Visible</initial-visibility>

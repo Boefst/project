@@ -7,6 +7,7 @@ GO
 CREATE TABLE kinship_forum_categories(
 	category_id int IDENTITY(1,1) NOT NULL,
 	title nvarchar(32) NOT NULL,
+	description nvarchar(512) NOT NULL,
 	CONSTRAINT PK_kinship_forum_categories PRIMARY KEY CLUSTERED (category_id)
 )
 GO

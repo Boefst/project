@@ -3,7 +3,11 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Forum</name>
     <events>
-        <variable constant="0" name="ForumState" sid="532339798546573" static="0" type="text">Cat</variable>
+        <variable constant="0" name="ForumXOffset" sid="819264225839069" static="0" type="number">320</variable>
+        <variable constant="0" name="ForumYOffset" sid="471961497355646" static="0" type="number">-160</variable>
+        <variable constant="0" name="ScrollLength" sid="422189128944472" static="0" type="number">25</variable>
+        <variable constant="0" name="ForumState" sid="532339798546573" static="0" type="text">Categories</variable>
+        <variable constant="0" name="CatID" sid="309872272106489" static="0" type="number">0</variable>
         <include>Globals</include>
         <event-block sid="250498634258758">
             <conditions>
@@ -15,6 +19,260 @@
                     <param id="1" name="Parameter {n}"></param>
                 </action>
             </actions>
+        </event-block>
+        <event-block sid="301140441795307">
+            <conditions>
+                <condition id="8" name="On mouse wheel" sid="106543983023117" type="Mouse">
+                    <param id="0" name="Direction">0</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="340204064991597">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="471652873208857" type="System">
+                            <param id="0" name="Object">ForumCategory</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="708486809922368" type="ForumCategory">
+                            <param id="0" name="X">ForumCategory.X</param>
+                            <param id="1" name="Y">ForumCategory.Y-ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="665981560942561">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="926327401971144" type="System">
+                            <param id="0" name="Object">ForumCategoryTitle</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="967965529868330" type="ForumCategoryTitle">
+                            <param id="0" name="X">ForumCategoryTitle.X</param>
+                            <param id="1" name="Y">ForumCategoryTitle.Y-ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="664791586918236">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="687594114082902" type="System">
+                            <param id="0" name="Object">ForumCategoryAuthor</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="247592564930732" type="ForumCategoryAuthor">
+                            <param id="0" name="X">ForumCategoryAuthor.X</param>
+                            <param id="1" name="Y">ForumCategoryAuthor.Y-ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="783319575858273">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="470467931723564" type="System">
+                            <param id="0" name="Object">ForumThread</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="148668454727446" type="ForumThread">
+                            <param id="0" name="X">ForumThread.X</param>
+                            <param id="1" name="Y">ForumThread.Y-ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="461458741173604">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="579152260377024" type="System">
+                            <param id="0" name="Object">ForumThreadTitle</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="184574056833770" type="ForumThreadTitle">
+                            <param id="0" name="X">ForumThreadTitle.X</param>
+                            <param id="1" name="Y">ForumThreadTitle.Y-ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="940980229333085">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="501728368435754" type="System">
+                            <param id="0" name="Object">ForumThreadAuthor</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="238229949085653" type="ForumThreadAuthor">
+                            <param id="0" name="X">ForumThreadAuthor.X</param>
+                            <param id="1" name="Y">ForumThreadAuthor.Y-ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="945732822605377">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="424373534017853" type="System">
+                            <param id="0" name="Object">ForumMessage</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="532706937485824" type="ForumMessage">
+                            <param id="0" name="X">ForumMessage.X</param>
+                            <param id="1" name="Y">ForumMessage.Y-ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="400288103694893">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="752514774094460" type="System">
+                            <param id="0" name="Object">ForumMessagePost</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="164247316774123" type="ForumMessagePost">
+                            <param id="0" name="X">ForumMessagePost.X</param>
+                            <param id="1" name="Y">ForumMessagePost.Y-ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="128463923582142">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="610664870982580" type="System">
+                            <param id="0" name="Object">ForumMessageAuthor</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="690105051942048" type="ForumMessageAuthor">
+                            <param id="0" name="X">ForumMessageAuthor.X</param>
+                            <param id="1" name="Y">ForumMessageAuthor.Y-ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="906615467754112">
+            <conditions>
+                <condition id="8" name="On mouse wheel" sid="433189258664760" type="Mouse">
+                    <param id="0" name="Direction">1</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="960186227269885">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="107600195072212" type="System">
+                            <param id="0" name="Object">ForumCategory</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="923887046376503" type="ForumCategory">
+                            <param id="0" name="X">ForumCategory.X</param>
+                            <param id="1" name="Y">ForumCategory.Y+ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="709790653230574">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="480162616960873" type="System">
+                            <param id="0" name="Object">ForumCategoryTitle</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="801877540287918" type="ForumCategoryTitle">
+                            <param id="0" name="X">ForumCategoryTitle.X</param>
+                            <param id="1" name="Y">ForumCategoryTitle.Y+ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="342163790838163">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="648772291137578" type="System">
+                            <param id="0" name="Object">ForumCategoryAuthor</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="162356719102364" type="ForumCategoryAuthor">
+                            <param id="0" name="X">ForumCategoryAuthor.X</param>
+                            <param id="1" name="Y">ForumCategoryAuthor.Y+ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="566723322958820">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="483238414853479" type="System">
+                            <param id="0" name="Object">ForumThread</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="404943245543396" type="ForumThread">
+                            <param id="0" name="X">ForumThread.X</param>
+                            <param id="1" name="Y">ForumThread.Y+ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="985587832627828">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="879331817799559" type="System">
+                            <param id="0" name="Object">ForumThreadTitle</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="572136372037984" type="ForumThreadTitle">
+                            <param id="0" name="X">ForumThreadTitle.X</param>
+                            <param id="1" name="Y">ForumThreadTitle.Y+ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="390773984054063">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="356204469816924" type="System">
+                            <param id="0" name="Object">ForumThreadAuthor</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="655626372526933" type="ForumThreadAuthor">
+                            <param id="0" name="X">ForumThreadAuthor.X</param>
+                            <param id="1" name="Y">ForumThreadAuthor.Y+ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="829359449442350">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="260282275006232" type="System">
+                            <param id="0" name="Object">ForumMessage</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="325810742356391" type="ForumMessage">
+                            <param id="0" name="X">ForumMessage.X</param>
+                            <param id="1" name="Y">ForumMessage.Y+ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="609810825250162">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="166106547832337" type="System">
+                            <param id="0" name="Object">ForumMessagePost</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="770093770370103" type="ForumMessagePost">
+                            <param id="0" name="X">ForumMessagePost.X</param>
+                            <param id="1" name="Y">ForumMessagePost.Y+ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="232382174923291">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="646133297037681" type="System">
+                            <param id="0" name="Object">ForumMessageAuthor</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="456813685223724" type="ForumMessageAuthor">
+                            <param id="0" name="X">ForumMessageAuthor.X</param>
+                            <param id="1" name="Y">ForumMessageAuthor.Y+ScrollLength</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
         <event-group description="" sid="572392653655889" title="GetCategories">
             <sub-events>
@@ -100,8 +358,8 @@
                                 <action id="-3" name="Create object" sid="177502955429461" type="System">
                                     <param id="0" name="Object to create">ForumCategory</param>
                                     <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">608</param>
-                                    <param id="3" name="Y">384+(loopindex*112)</param>
+                                    <param id="2" name="X">608+ForumXOffset</param>
+                                    <param id="3" name="Y">384+ForumYOffset+(loopindex*112)</param>
                                 </action>
                                 <action id="-10" name="Set value" sid="653384260648026" type="ForumCategory">
                                     <param id="0" name="Instance variable">CategoryID</param>
@@ -110,8 +368,8 @@
                                 <action id="-3" name="Create object" sid="270589680021057" type="System">
                                     <param id="0" name="Object to create">ForumCategoryTitle</param>
                                     <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">410</param>
-                                    <param id="3" name="Y">378+(loopindex*112)</param>
+                                    <param id="2" name="X">410+ForumXOffset</param>
+                                    <param id="3" name="Y">378+ForumYOffset+(loopindex*112)</param>
                                 </action>
                                 <action id="2" name="Set font face" sid="411213292498454" type="ForumCategoryTitle">
                                     <param id="0" name="Font face">&quot;Arial&quot;</param>
@@ -123,15 +381,15 @@
                                 <action id="-3" name="Create object" sid="778727116678391" type="System">
                                     <param id="0" name="Object to create">ForumCategoryAuthor</param>
                                     <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">410</param>
-                                    <param id="3" name="Y">402+(loopindex*112)</param>
+                                    <param id="2" name="X">410+ForumXOffset</param>
+                                    <param id="3" name="Y">402+ForumYOffset+(loopindex*112)</param>
                                 </action>
                                 <action id="2" name="Set font face" sid="463868378582291" type="ForumCategoryAuthor">
                                     <param id="0" name="Font face">&quot;Arial&quot;</param>
                                     <param id="1" name="Style">2</param>
                                 </action>
                                 <action id="0" name="Set text" sid="531584040766136" type="ForumCategoryAuthor">
-                                    <param id="0" name="Text">&quot;Description&quot;</param>
+                                    <param id="0" name="Text">Dictionary.Get(&quot;Description&quot;)</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -148,6 +406,10 @@
                                     <param id="0" name="Type">0</param>
                                     <param id="1" name="Message">&quot;Frontend: GetCategories Successful&quot;</param>
                                 </action>
+                                <action id="-9" name="Set value" sid="478282184275321" type="System">
+                                    <param id="0" name="Variable">ForumState</param>
+                                    <param id="1" name="Value">&quot;Categories&quot;</param>
+                                </action>
                             </actions>
                         </event-block>
                     </sub-events>
@@ -163,6 +425,10 @@
                         </condition>
                     </conditions>
                     <actions>
+                        <action id="-9" name="Set value" sid="308613321679963" type="System">
+                            <param id="0" name="Variable">CatID</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
+                        </action>
                         <action id="0" name="Call function" sid="243567429612907" type="Function">
                             <param id="0" name="Name">&quot;ResetForum&quot;</param>
                             <param id="1" name="Parameter {n}"></param>
@@ -238,8 +504,8 @@
                                 <action id="-3" name="Create object" sid="835354309748419" type="System">
                                     <param id="0" name="Object to create">ForumThread</param>
                                     <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">608</param>
-                                    <param id="3" name="Y">384+(loopindex*80)</param>
+                                    <param id="2" name="X">608+ForumXOffset</param>
+                                    <param id="3" name="Y">384+ForumYOffset+(loopindex*80)</param>
                                 </action>
                                 <action id="-10" name="Set value" sid="313955005613050" type="ForumThread">
                                     <param id="0" name="Instance variable">ThreadID</param>
@@ -248,8 +514,8 @@
                                 <action id="-3" name="Create object" sid="686545070562701" type="System">
                                     <param id="0" name="Object to create">ForumThreadTitle</param>
                                     <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">410</param>
-                                    <param id="3" name="Y">378+(loopindex*80)</param>
+                                    <param id="2" name="X">410+ForumXOffset</param>
+                                    <param id="3" name="Y">378+ForumYOffset+(loopindex*80)</param>
                                 </action>
                                 <action id="2" name="Set font face" sid="931119799771188" type="ForumThreadTitle">
                                     <param id="0" name="Font face">&quot;Arial&quot;</param>
@@ -261,8 +527,8 @@
                                 <action id="-3" name="Create object" sid="608612503087695" type="System">
                                     <param id="0" name="Object to create">ForumThreadAuthor</param>
                                     <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">410</param>
-                                    <param id="3" name="Y">402+(loopindex*80)</param>
+                                    <param id="2" name="X">410+ForumXOffset</param>
+                                    <param id="3" name="Y">402+ForumYOffset+(loopindex*80)</param>
                                 </action>
                                 <action id="2" name="Set font face" sid="193101861310958" type="ForumThreadAuthor">
                                     <param id="0" name="Font face">&quot;Arial&quot;</param>
@@ -285,6 +551,10 @@
                                 <action id="14" name="Log" sid="894215477489420" type="Browser">
                                     <param id="0" name="Type">0</param>
                                     <param id="1" name="Message">&quot;Frontend: GetThreads Successful&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="866799109480475" type="System">
+                                    <param id="0" name="Variable">ForumState</param>
+                                    <param id="1" name="Value">&quot;Threads&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -347,6 +617,10 @@
                         <action id="4" name="Load" sid="611272149307568" type="Dictionary">
                             <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:&quot;&amp;AJAX.LastData&amp;&quot;}&quot;</param>
                         </action>
+                        <action id="14" name="Log" sid="810734287864303" type="Browser">
+                            <param id="0" name="Type">0</param>
+                            <param id="1" name="Message">AJAX.LastData</param>
+                        </action>
                         <action id="0" name="Call function" sid="593733057319585" type="Function">
                             <param id="0" name="Name">&quot;CheckStatus&quot;</param>
                             <param id="1" name="Parameter {n}">&quot;GetMessages&quot;{###}Dictionary.Get(&quot;Status&quot;){###}Dictionary.Get(&quot;Message&quot;)</param>
@@ -369,6 +643,10 @@
                                     <param id="0" name="Variable">currentString</param>
                                     <param id="1" name="Value">replace(replace(tokenat(replace(tokenat(AJAX.LastData, 1, &quot;[&quot;), &quot;]&quot;, &quot;&quot;), loopindex, &quot;},{&quot;), &quot;{&quot;, &quot;&quot;), &quot;}&quot;, &quot;&quot;)</param>
                                 </action>
+                                <action id="14" name="Log" sid="822737490238859" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">currentString</param>
+                                </action>
                                 <action id="3" name="Clear" sid="195453439628689" type="Dictionary" />
                                 <action id="4" name="Load" sid="134511213191290" type="Dictionary">
                                     <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:{&quot;&amp;currentString&amp;&quot;}}&quot;</param>
@@ -376,8 +654,8 @@
                                 <action id="-3" name="Create object" sid="800699095707116" type="System">
                                     <param id="0" name="Object to create">ForumMessage</param>
                                     <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">608</param>
-                                    <param id="3" name="Y">352+(loopindex*140)</param>
+                                    <param id="2" name="X">608+ForumXOffset</param>
+                                    <param id="3" name="Y">352+ForumYOffset+(loopindex*140)</param>
                                 </action>
                                 <action id="-10" name="Set value" sid="184487842744494" type="ForumMessage">
                                     <param id="0" name="Instance variable">MessageID</param>
@@ -386,8 +664,8 @@
                                 <action id="-3" name="Create object" sid="996510464911934" type="System">
                                     <param id="0" name="Object to create">ForumMessageAuthor</param>
                                     <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">160</param>
-                                    <param id="3" name="Y">352+(loopindex*140)</param>
+                                    <param id="2" name="X">160+ForumXOffset</param>
+                                    <param id="3" name="Y">352+ForumYOffset+(loopindex*140)</param>
                                 </action>
                                 <action id="2" name="Set font face" sid="377429644422654" type="ForumMessageAuthor">
                                     <param id="0" name="Font face">&quot;Arial&quot;</param>
@@ -399,8 +677,8 @@
                                 <action id="-3" name="Create object" sid="884785355215818" type="System">
                                     <param id="0" name="Object to create">ForumMessagePost</param>
                                     <param id="1" name="Layer">0</param>
-                                    <param id="2" name="X">672</param>
-                                    <param id="3" name="Y">352+(loopindex*140)</param>
+                                    <param id="2" name="X">672+ForumXOffset</param>
+                                    <param id="3" name="Y">352+ForumYOffset+(loopindex*140)</param>
                                 </action>
                                 <action id="0" name="Set text" sid="607077555324782" type="ForumMessagePost">
                                     <param id="0" name="Text">Dictionary.Get(&quot;Message&quot;)</param>
@@ -419,6 +697,10 @@
                                 <action id="14" name="Log" sid="748507624276727" type="Browser">
                                     <param id="0" name="Type">0</param>
                                     <param id="1" name="Message">&quot;Frontend: GetThreads Successful&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="176726029579566" type="System">
+                                    <param id="0" name="Variable">ForumState</param>
+                                    <param id="1" name="Value">&quot;Posts&quot;</param>
                                 </action>
                             </actions>
                         </event-block>
@@ -473,6 +755,130 @@
                 <action id="-9" name="Destroy" sid="440986220585315" type="ForumMessagePost" />
                 <action id="-9" name="Destroy" sid="905415419842879" type="ForumMessageAuthor" />
             </actions>
+        </event-block>
+        <event-block sid="412850587871240">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="498712740513814" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">ButtonBG</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="155169996201371" type="ButtonBG">
+                    <param id="0" name="Instance variable">Type</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;Back&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="310433903764350">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="688744031218557" type="System">
+                            <param id="0" name="Variable">ForumState</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Threads&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="549848824179434" type="Function">
+                            <param id="0" name="Name">&quot;GetCategories&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="437904110864713">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="357119655150970" type="System" />
+                        <condition id="-14" name="Compare variable" sid="723406320759211" type="System">
+                            <param id="0" name="Variable">ForumState</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Posts&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="726314433760923" type="Function">
+                            <param id="0" name="Name">&quot;GetThreads&quot;</param>
+                            <param id="1" name="Parameter {n}">CatID</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="341334375007942">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="876875157143063" type="System">
+                    <param id="0" name="Variable">ForumState</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;Categories&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="253295218796182">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="478959060089190" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Back&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="287341941990476" type="ButtonBG">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="270860773679604">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="450839998215414" type="HeaderMenuText">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Back&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="871527299953988" type="HeaderMenuText">
+                            <param id="0" name="Visibility">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="648949431806473">
+            <conditions>
+                <condition id="-22" name="Else" sid="964864980114570" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="715984267701802">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="336281857087495" type="ButtonBG">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Back&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="758757429457837" type="ButtonBG">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="902435619931318">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="278445041575939" type="HeaderMenuText">
+                            <param id="0" name="Instance variable">Type</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Back&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="326167259545089" type="HeaderMenuText">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
         </event-block>
     </events>
 </c2eventsheet>
