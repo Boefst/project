@@ -399,7 +399,7 @@ namespace KinshipAPI.Controllers {
                 try {
                     JArray retArr = new JArray();
                     dbConnection = Helper.OpenDBConnection("localhost", "kinship");
-                    string insertText = "SELECT category_id, title FROM kinship_forum_categories";
+                    string insertText = "SELECT category_id, title, description FROM kinship_forum_categories";
                     using (SqlCommand command = new SqlCommand(insertText, dbConnection)) {
 
                         SqlDataReader myReader = command.ExecuteReader();
@@ -408,6 +408,7 @@ namespace KinshipAPI.Controllers {
                             JObject retCategory = new JObject();
                             retCategory.Add("CategoryID", (int)myReader["category_id"]);
                             retCategory.Add("Title", (string)myReader["title"]);
+                            retCategory.Add("Description", (string)myReader["description"]);
                             retArr.Add(retCategory);
                             resultsAmount++;
                         }
