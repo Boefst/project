@@ -88,6 +88,153 @@ namespace APIHelper {
             }
             return userID;
         }
+        public bool CompareResourceCost(int villageID, string building) {
+            bool result = true;
+            JObject villageResources = GetVillageResources(villageID);
+            JObject resourceCosts = GetBuildingResourceCosts(villageID, building);
+            return result;
+        }
+        public int GetBuildingLevel(int villageID, string building) {
+            int building_level = 0;
+            SqlConnection dbConnection;
+
+            dbConnection = OpenDBConnection("localhost", "kinship_world0");
+            string insertText = $"SELECT {building} FROM world0_village_buildings WHERE village_id = @vid";
+            using (SqlCommand command = new SqlCommand(insertText, dbConnection)) {
+                command.Parameters.Add("@vid", SqlDbType.Int);
+                command.Parameters["@vid"].Value = villageID;
+
+                SqlDataReader myReader = command.ExecuteReader();
+                int resultsAmount = 0;
+                while (myReader.Read()) {
+                    building_level = (int)myReader[building];
+                    resultsAmount++;
+                }
+                if (resultsAmount > 1) {
+                    Console.WriteLine("Build: THIS SHOULDN'T HAPPEN");
+                }
+            }
+            CloseDBConnection(dbConnection);
+            return building_level;
+        }
+        public JObject GetVillageResources(int villageID) {
+            JObject result = null;
+            SqlConnection dbConnection;
+
+            dbConnection = OpenDBConnection("localhost", "kinship_world0");
+            string insertText = $"SELECT * FROM world0_village_resources WHERE village_id = @vid";
+            using (SqlCommand command = new SqlCommand(insertText, dbConnection)) {
+
+                command.Parameters.Add("@vid", SqlDbType.Int);
+                command.Parameters["@vid"].Value = villageID;
+
+                SqlDataReader myReader = command.ExecuteReader();
+                int resultsAmount = 0;
+                while (myReader.Read()) {
+                    result.Add("VillageID", (int)myReader["village_id"]);
+                    result.Add("Wood", (int)myReader["wood"]);
+                    result.Add("Stone", (int)myReader["stone"]);
+                    result.Add("Iron", (int)myReader["iron"]);
+                    result.Add("Food", (int)myReader["food"]);
+                    result.Add("Gold", (int)myReader["gold"]);
+                    //TODO add population, get from house level
+                    resultsAmount++;
+                }
+                if (resultsAmount > 1) {
+                    Console.WriteLine("Build: THIS SHOULDN'T HAPPEN");
+                }
+            }
+            return result;
+        }
+        public JObject GetBuildingResourceCosts(int villageID, string building) {
+            JObject result = null;
+            //TODO get resource costs
+            result.Add("VillageID", 1);
+            result.Add("WoodCost", 1);
+            result.Add("StoneCost", 1);
+            result.Add("IronCost", 1);
+            result.Add("FoodCost", 1);
+            result.Add("GoldCost", 1);
+            result.Add("HouseCost", 1);
+            return result;
+        }
+        public int GetVillageMoral(int villageID) {
+            int result = 100;
+            //TODO village moral
+            return result;
+        }
+        public JObject GetBuildingTime(string building, int buildingLevel) {
+            JObject result = null;
+            //TODO building time
+            result.Add("Hours", 0);
+            result.Add("Minutes", 1);
+            result.Add("Seconds", 0);
+            return result;
+        }
+        public int GetBuildingMaxLevel(string building) {
+            int max = 0;
+
+            if(building == "headquarters") {
+                max = 40;
+            }else if (building == "rally_point") {
+                max = 1;
+            }
+            else if (building == "barracks") {
+                max = 30;
+            }
+            else if (building == "stables") {
+                max = 30;
+            }
+            else if (building == "workshop") {
+                max = 15;
+            }
+            else if (building == "woodcutter") {
+                max = 40;
+            }
+            else if (building == "quarry") {
+                max = 40;
+            }
+            else if (building == "iron_mine") {
+                max = 40;
+            }
+            else if (building == "farm") {
+                max = 30;
+            }
+            else if (building == "palace") {
+                max = 20;
+            }
+            else if (building == "warehouse") {
+                max = 40;
+            }
+            else if (building == "barn") {
+                max = 40;
+            }
+            else if (building == "bank") {
+                max = 40;
+            }
+            else if (building == "market") {
+                max = 30;
+            }
+            else if (building == "houses") {
+                max = 40;
+            }
+            else if (building == "monastery") {
+                max = 5;
+            }
+            else if (building == "academy") {
+                max = 10;
+            }
+            else if (building == "university") {
+                max = 20;
+            }
+            else if (building == "wall") {
+                max = 40;
+            }
+            else if (building == "tower") {
+                max = 10;
+            }
+            return max;
+        }
     }
 }
 

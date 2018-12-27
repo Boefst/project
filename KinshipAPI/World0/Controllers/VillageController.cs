@@ -42,7 +42,7 @@ namespace World0.Controllers {
                         SqlDataReader myReader = command.ExecuteReader();
                     }
                     Helper.CloseDBConnection(dbConnection);
-                    result = Helper.BuildResult(200, "OK", retObj, "");
+                    result = Helper.BuildResult(200, "OK", null, "");
                 }
                 catch (Exception e) {
                     result = Helper.BuildResult(500, "Internal Server Error", null, e.Message);
@@ -68,21 +68,18 @@ namespace World0.Controllers {
             }
             else {
                 try {
-                    int count = 0;
                     string which_villages = "";
-                    foreach (var item in Villages) {
-                        count++;
-                        Console.WriteLine("Count: " + count + " JObjectcount: " + Villages.Count);
-                        if (count < Villages.Count) {
-                            which_villages += $"village_id = {Villages["VillageID"]} AND ";
+                    foreach (var item in Villages["Villages"]) {
+                        if (item == Villages["Villages"].Last) {
+                            which_villages += $" village_id = {item["ID"]}";
                         }
                         else {
-                            which_villages += $"village_id = {Villages["VillageID"]}";
+                            which_villages += $" village_id = {item["ID"]} OR";
                         }
                     }
                     JArray retArr = new JArray();
                     dbConnection = Helper.OpenDBConnection("localhost", "kinship_world0");
-                    string insertText = $"SELECT * FROM world0_village_buildings WHERE {which_villages}";
+                    string insertText = $"SELECT * FROM world0_village_buildings WHERE{which_villages}";
                     using (SqlCommand command = new SqlCommand(insertText, dbConnection)) {
 
                         SqlDataReader myReader = command.ExecuteReader();
@@ -90,8 +87,26 @@ namespace World0.Controllers {
                         while (myReader.Read()) {
                             JObject retBuilding = new JObject();
                             retBuilding.Add("VillageID", (int)myReader["village_id"]);
-                            retBuilding.Add("Headquarters", (string)myReader["headquarters"]);
-                            retBuilding.Add("Barracks", (string)myReader["barracks"]);
+                            retBuilding.Add("Headquarters", (int)myReader["headquarters"]);
+                            retBuilding.Add("RallyPoint", (int)myReader["rally_point"]);
+                            retBuilding.Add("Barracks", (int)myReader["barracks"]);
+                            retBuilding.Add("Stables", (int)myReader["stables"]);
+                            retBuilding.Add("Workshop", (int)myReader["workshop"]);
+                            retBuilding.Add("Woodcutter", (int)myReader["woodcutter"]);
+                            retBuilding.Add("Quarry", (int)myReader["quarry"]);
+                            retBuilding.Add("IronMine", (int)myReader["iron_mine"]);
+                            retBuilding.Add("Farm", (int)myReader["farm"]);
+                            retBuilding.Add("Palace", (int)myReader["palace"]);
+                            retBuilding.Add("Warehouse", (int)myReader["warehouse"]);
+                            retBuilding.Add("Barn", (int)myReader["barn"]);
+                            retBuilding.Add("Bank", (int)myReader["bank"]);
+                            retBuilding.Add("Market", (int)myReader["market"]);
+                            retBuilding.Add("Houses", (int)myReader["houses"]);
+                            retBuilding.Add("Monastery", (int)myReader["monastery"]);
+                            retBuilding.Add("Academy", (int)myReader["academy"]);
+                            retBuilding.Add("University", (int)myReader["university"]);
+                            retBuilding.Add("Wall", (int)myReader["wall"]);
+                            retBuilding.Add("Tower", (int)myReader["tower"]);
                             retArr.Add(retBuilding);
                             resultsAmount++;
                         }
@@ -107,14 +122,107 @@ namespace World0.Controllers {
             }
             return result;
         }
-        // Add building to building queue
+        // village/build/bank/up
         [HttpPost]
-        [Route("build/{building}/{change}")]
-        public JObject Build([FromHeader]string ClientID, [FromHeader]string ClientSecret, string building, string change) {
+        [Route("build/{villageID}/{building}/{change}")]
+        public JObject Build([FromHeader]string ClientID, [FromHeader]string ClientSecret, int villageID, string building, string change) {
             JObject result = null;
+            int userID = -1;
+            SqlConnection dbConnection;
+            try {
+                userID = Helper.GetUserID(ClientID, ClientSecret);
+            }
+            catch (Exception e) {
+                result = Helper.BuildResult(500, "Internal Server Error", null, e.Message);
+            }
+            if (userID == -1) {
+                result = Helper.BuildResult(404, "Not Found", null, "Session not found");
+            }
+            else {
+                try {
+                    int building_level = Helper.GetBuildingLevel(villageID, building);
+
+                    bool addtoqueue = false;
+                    int leveltoadd = 0;
+                    if (change == "up") {
+                        if (building_level < Helper.GetBuildingMaxLevel(building)) {
+                            if (Helper.CompareResourceCost(villageID, building)) {
+                                addtoqueue = true;
+                                leveltoadd = 1;
+                            }
+                            else{
+                                result = Helper.BuildResult(400, "Bad request", null, "Not enough resources");
+                            }
+                        }
+                        else {
+                            result = Helper.BuildResult(400, "Bad request", null, "Maximum level reached");
+                        }
+                    }else if (change == "down") {
+                        if (building_level > 0) {
+                            if (true) { //TODO moral enough
+                                addtoqueue = true;
+                                leveltoadd = -1;
+                            }
+                            else {
+                                result = Helper.BuildResult(400, "Bad request", null, "Not enough moral to downgrade");
+                            }
+                        }
+                        else {
+                            result = Helper.BuildResult(400, "Bad request", null, "Can't downgrade below 0");
+                        }
+                    }
+                    else {
+                        result = Helper.BuildResult(400, "Bad request", null, "Wrong parameter");
+                    }
+
+                    if (addtoqueue == true) {
+                        if (change == "up") {
+                            Helper.GetBuildingResourceCosts(villageID, building);
+                        }
+                        dbConnection = Helper.OpenDBConnection("localhost", "kinship_world0");
+                        string insertText2 = "INSERT INTO world0_building_queue (village_id, building, change, time_start, time_end) VALUES (@vid, @building, @change, CURRENT_TIMESTAMP, @finished)";
+                        using (SqlCommand command = new SqlCommand(insertText2, dbConnection)) {
+
+                            command.Parameters.Add("@vid", SqlDbType.Int);
+                            command.Parameters["@vid"].Value = villageID;
+
+                            command.Parameters.Add("@building", SqlDbType.NVarChar);
+                            command.Parameters["@building"].Value = building;
+
+                            command.Parameters.Add("@change", SqlDbType.Int);
+                            command.Parameters["@change"].Value = leveltoadd;
+
+                            JObject timeToAdd = Helper.GetBuildingTime(building, building_level);
+                            double hours = (double)timeToAdd["Hours"];
+                            double minutes = (double)timeToAdd["Minutes"];
+                            double seconds = (double)timeToAdd["Seconds"];
+
+                            DateTime finished = DateTime.Now;
+                            if (hours > 0) {
+                                finished = finished.AddHours(hours);
+                            }
+                            if (minutes > 0) {
+                                finished = finished.AddMinutes(minutes);
+                            }
+                            if (seconds > 0) {
+                                finished = finished.AddSeconds(seconds);
+                            }
+                            command.Parameters.Add("@finished", SqlDbType.DateTime);
+                            command.Parameters["@finished"].Value = finished;
+
+                            SqlDataReader myReader = command.ExecuteReader();
+                        }
+                        Helper.CloseDBConnection(dbConnection);
+                        result = Helper.BuildResult(200, "OK", null, "");
+                    }
+                }
+                catch (Exception e) {
+                    result = Helper.BuildResult(500, "Internal Server Error", null, e.Message);
+                }
+            }
             return result;
         }
-        // Add building to building queue
+        // Add research to research queue
         [HttpPost]
         [Route("research/{research}/{change}")]
         public JObject Research([FromHeader]string ClientID, [FromHeader]string ClientSecret, string research, string change) {
@@ -128,7 +236,7 @@ namespace World0.Controllers {
             JObject result = null;
             return result;
         }
-        // Add troops to troops queue
+        // Upgrade unit
         [HttpPost]
         [Route("upgrade/{unit}/{change}")]
         public JObject Upgrade([FromHeader]string ClientID, [FromHeader]string ClientSecret, string unit, string change) {
