@@ -21,7 +21,10 @@
         <plugin author="Scirra" id="TextBox" version="1">Text box</plugin>
         <plugin author="Scirra" id="Touch" version="1">Touch</plugin>
     </used-plugins>
-    <used-behaviors />
+    <used-behaviors>
+        <behavior author="Scirra" id="DragnDrop" version="1">Drag &amp; Drop</behavior>
+        <behavior author="Scirra" id="Pin" version="1">Pin</behavior>
+    </used-behaviors>
     <used-effects />
     <configurations>
         <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
@@ -182,6 +185,66 @@
         </object-type>
         <object-type name="ForumMessagePost" sid="796853846793973">
             <plugin id="Text" />
+        </object-type>
+        <object-type name="MapHex" sid="959754578131854">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="CoordX" sid="596595798286073" type="number" />
+                <instance-variable name="CoordY" sid="489977224312912" type="number" />
+                <instance-variable name="CoordZ" sid="864153313880322" type="number" />
+                <instance-variable name="VillageID" sid="868998059445778" type="number" />
+                <instance-variable name="Name" sid="587067946017793" type="string" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Pin" sid="833710136465013">
+                    <behavior id="Pin" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="831890024622771" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+                <animation framecount="1" loop="0" name="Player" pingpong="0" repeatcount="1" repeatto="0" sid="771037233553344" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+                <animation framecount="1" loop="0" name="Barbarian" pingpong="0" repeatcount="1" repeatto="0" sid="815962518696254" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="CoordText" sid="602604629332417">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="MapForeground" sid="148190452411677">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="ChunkSize" sid="820371319857979" type="number" />
+                <instance-variable name="CoordX" sid="720094721034894" type="number" />
+                <instance-variable name="CoordY" sid="649844350611882" type="number" />
+                <instance-variable name="CoordZ" sid="254532307824458" type="number" />
+            </instance-variables>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="434360906653043" speed="5">
+                    <frame duration="1" hotspotX="0.000520833" hotspotY="0.000925926" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="MapBG" sid="923187050123746">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="OldCenterX" sid="802051771520791" type="number" />
+                <instance-variable name="OldCenterY" sid="397907605306692" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="DragDrop" sid="493701415957242">
+                    <behavior id="DragnDrop" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="355779145271683" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
         </object-type>
     </object-folder>
     <families />

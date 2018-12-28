@@ -11,6 +11,72 @@ namespace World0.Controllers {
     public class VillageController : ControllerBase {
         Helper Helper = new Helper();
 
+        // village/chunk/{xcoord}/{ycoord}/{zcoord}/{chunkSize}
+        [HttpGet]
+        [Route("chunk/{xcoord}/{ycoord}/{zcoord}/{chunkSize}")]
+        public JObject GetChunk([FromHeader]string ClientID, [FromHeader]string ClientSecret, int xcoord, int ycoord, int zcoord, int chunkSize) {
+            JObject result = null;
+            int userID = -1;
+            SqlConnection dbConnection;
+            try {
+                userID = Helper.GetUserID(ClientID, ClientSecret);
+            }
+            catch (Exception e) {
+                result = Helper.BuildResult(500, "Internal Server Error", null, e.Message);
+            }
+            if (userID == -1) {
+                result = Helper.BuildResult(404, "Not Found", null, "Session not found");
+            }
+            else {
+                try {
+                    JArray retArr = new JArray();
+                    dbConnection = Helper.OpenDBConnection("localhost", "kinship_world0");
+                    string insertText2 = $"SELECT * FROM world0_villages WHERE village_coord_x >= @lowerx AND village_coord_x <= @upperx AND village_coord_y >= @lowery AND village_coord_y <= @uppery AND village_coord_z >= @lowerz AND village_coord_z <= @upperz";
+                    using (SqlCommand command = new SqlCommand(insertText2, dbConnection)) {
+                        command.Parameters.Add("@upperx", SqlDbType.Int);
+                        command.Parameters["@upperx"].Value = xcoord + chunkSize;
+
+                        command.Parameters.Add("@lowerx", SqlDbType.Int);
+                        command.Parameters["@lowerx"].Value = xcoord - chunkSize;
+
+                        command.Parameters.Add("@uppery", SqlDbType.Int);
+                        command.Parameters["@uppery"].Value = ycoord + chunkSize;
+
+                        command.Parameters.Add("@lowery", SqlDbType.Int);
+                        command.Parameters["@lowery"].Value = ycoord - chunkSize;
+
+                        command.Parameters.Add("@upperz", SqlDbType.Int);
+                        command.Parameters["@upperz"].Value = zcoord + chunkSize;
+
+                        command.Parameters.Add("@lowerz", SqlDbType.Int);
+                        command.Parameters["@lowerz"].Value = zcoord - chunkSize;
+
+                        SqlDataReader myReader = command.ExecuteReader();
+                        int resultsAmount = 0;
+                        while (myReader.Read()) {
+                            JObject retVillages = new JObject();
+                            retVillages.Add("VillageID", (int)myReader["village_id"]);
+                            retVillages.Add("OwnerID", (int)myReader["village_owner_id"]);
+                            retVillages.Add("Name", (string)myReader["village_name"]);
+                            retVillages.Add("XCoord", (int)myReader["village_coord_x"]);
+                            retVillages.Add("YCoord", (int)myReader["village_coord_y"]);
+                            retVillages.Add("ZCoord", (int)myReader["village_coord_z"]);
+                            retArr.Add(retVillages);
+                            resultsAmount++;
+                        }
+                    }
+                    Helper.CloseDBConnection(dbConnection);
+                    JObject retObj = new JObject();
+                    retObj.Add("Villages", retArr);
+                    result = Helper.BuildResult(200, "OK", retObj, "");
+                }
+                catch (Exception e) {
+                    result = Helper.BuildResult(500, "Internal Server Error", null, e.Message);
+                }
+            }
+            return result;
+        }
+
         // village/rename/herro/2
         [HttpPost]
         [Route("rename/{name}/{village_id}")]

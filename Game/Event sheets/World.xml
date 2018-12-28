@@ -4,5 +4,636 @@
     <name>World</name>
     <events>
         <include>Globals</include>
+        <event-block sid="216790583574213">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="601883806790033" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="262027526105025" type="MapHex" />
+                <action id="-10" name="Set value" sid="657173753807838" type="MapForeground">
+                    <param id="0" name="Instance variable">CoordX</param>
+                    <param id="1" name="Value">500</param>
+                </action>
+                <action id="-10" name="Set value" sid="888374001006149" type="MapForeground">
+                    <param id="0" name="Instance variable">CoordY</param>
+                    <param id="1" name="Value">500</param>
+                </action>
+                <action id="-10" name="Set value" sid="751250459309947" type="MapForeground">
+                    <param id="0" name="Instance variable">CoordZ</param>
+                    <param id="1" name="Value">500</param>
+                </action>
+                <action id="0" name="Call function" sid="137776321102040" type="Function">
+                    <param id="0" name="Name">&quot;CreateMap&quot;</param>
+                    <param id="1" name="Parameter {n}">MapForeground.CoordX{###}MapForeground.CoordY{###}MapForeground.CoordZ{###}MapForeground.ChunkSize</param>
+                </action>
+                <action id="0" name="Call function" sid="919959309564798" type="Function">
+                    <param id="0" name="Name">&quot;GetChunk&quot;</param>
+                    <param id="1" name="Parameter {n}">MapForeground.CoordX{###}MapForeground.CoordY{###}MapForeground.CoordZ{###}MapForeground.ChunkSize</param>
+                </action>
+                <action id="-10" name="Set value" sid="391918255693315" type="MapBG">
+                    <param id="0" name="Instance variable">OldCenterX</param>
+                    <param id="1" name="Value">MapBG.X</param>
+                </action>
+                <action id="-10" name="Set value" sid="632664070325711" type="MapBG">
+                    <param id="0" name="Instance variable">OldCenterY</param>
+                    <param id="1" name="Value">MapBG.Y</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="760731682800531">
+            <conditions>
+                <condition id="0" name="On function" sid="858993757983100" type="Function">
+                    <param id="0" name="Name">&quot;CreateMap&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="917017029251263" type="System">
+                    <param id="0" name="Object to create">MapHex</param>
+                    <param id="1" name="Layer">2</param>
+                    <param id="2" name="X">736</param>
+                    <param id="3" name="Y">576</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="384695430633092" type="MapHex">
+                    <param id="0" name="Pin to">MapBG</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="916542199377744" type="MapHex">
+                    <param id="0" name="Instance variable">CoordX</param>
+                    <param id="1" name="Value">Function.Param(0)</param>
+                </action>
+                <action id="-10" name="Set value" sid="880287821603598" type="MapHex">
+                    <param id="0" name="Instance variable">CoordY</param>
+                    <param id="1" name="Value">Function.Param(1)</param>
+                </action>
+                <action id="-10" name="Set value" sid="895173513053322" type="MapHex">
+                    <param id="0" name="Instance variable">CoordZ</param>
+                    <param id="1" name="Value">Function.Param(2)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="729841245383080">
+                    <conditions>
+                        <condition id="-12" name="Repeat" sid="753756155114665" type="System">
+                            <param id="0" name="Count">Function.Param(3)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="146501529132270" type="Function">
+                            <param id="0" name="Name">&quot;CreateHexRing&quot;</param>
+                            <param id="1" name="Parameter {n}">MapForeground.CoordX{###}MapForeground.CoordY{###}MapForeground.CoordZ{###}loopindex+1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="632484648236551">
+            <conditions>
+                <condition id="0" name="On function" sid="366915547676210" type="Function">
+                    <param id="0" name="Name">&quot;CreateHexRing&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="Ring" sid="598082995570242" static="0" type="number">0</variable>
+                <variable constant="0" name="XCoord" sid="680835746432263" static="0" type="number">0</variable>
+                <variable constant="0" name="YCoord" sid="457342233938802" static="0" type="number">0</variable>
+                <variable constant="0" name="ZCoord" sid="714839451333069" static="0" type="number">0</variable>
+                <variable constant="0" name="MapLayer" sid="542027389319139" static="0" type="number">2</variable>
+                <variable constant="0" name="BaseX" sid="297755514384127" static="0" type="number">736</variable>
+                <variable constant="0" name="BaseY" sid="414267700627647" static="0" type="number">576</variable>
+                <event-block sid="134128710877058">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="957982536505816" type="System">
+                            <param id="0" name="First value">Function.Param(3)</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="113404529199011" type="System">
+                            <param id="0" name="Variable">Ring</param>
+                            <param id="1" name="Value">Function.Param(3)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="711291789995883" type="System">
+                            <param id="0" name="Variable">XCoord</param>
+                            <param id="1" name="Value">(Function.Param(3))*(-1)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="994781352933556" type="System">
+                            <param id="0" name="Variable">YCoord</param>
+                            <param id="1" name="Value">Function.Param(3)</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="853773502509441" type="System">
+                            <param id="0" name="Variable">ZCoord</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="380267166815447">
+                    <conditions>
+                        <condition id="-12" name="Repeat" sid="452963383588862" type="System">
+                            <param id="0" name="Count">Ring</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="783780137276983" type="System">
+                            <param id="0" name="Object to create">MapHex</param>
+                            <param id="1" name="Layer">MapLayer</param>
+                            <param id="2" name="X">MapBG.X-(32*Ring)+(32*XCoord)</param>
+                            <param id="3" name="Y">MapBG.Y+(48*ZCoord)</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="240297726064184" type="MapHex">
+                            <param id="0" name="Pin to">MapBG</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="529589194127746" type="MapHex">
+                            <param id="0" name="Instance variable">CoordX</param>
+                            <param id="1" name="Value">Function.Param(0)+XCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="331233718973909" type="MapHex">
+                            <param id="0" name="Instance variable">CoordY</param>
+                            <param id="1" name="Value">Function.Param(1)+YCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="302828018257137" type="MapHex">
+                            <param id="0" name="Instance variable">CoordZ</param>
+                            <param id="1" name="Value">Function.Param(2)+ZCoord</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="924798212969307" type="System">
+                            <param id="0" name="Variable">XCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="446873005344271" type="System">
+                            <param id="0" name="Variable">ZCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="888713775813513">
+                    <conditions>
+                        <condition id="-12" name="Repeat" sid="910374540288617" type="System">
+                            <param id="0" name="Count">Ring</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="238321020809433" type="System">
+                            <param id="0" name="Object to create">MapHex</param>
+                            <param id="1" name="Layer">MapLayer</param>
+                            <param id="2" name="X">MapBG.X-(32*Ring)+(64*XCoord)</param>
+                            <param id="3" name="Y">MapBG.Y+(48*ZCoord)</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="807908211543356" type="MapHex">
+                            <param id="0" name="Pin to">MapBG</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="132841033952899" type="MapHex">
+                            <param id="0" name="Instance variable">CoordX</param>
+                            <param id="1" name="Value">Function.Param(0)+XCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="738875342600144" type="MapHex">
+                            <param id="0" name="Instance variable">CoordY</param>
+                            <param id="1" name="Value">Function.Param(1)+YCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="698259428269589" type="MapHex">
+                            <param id="0" name="Instance variable">CoordZ</param>
+                            <param id="1" name="Value">Function.Param(2)+ZCoord</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="256148633937371" type="System">
+                            <param id="0" name="Variable">XCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="440413751550162" type="System">
+                            <param id="0" name="Variable">YCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="321646531728107">
+                    <conditions>
+                        <condition id="-12" name="Repeat" sid="705942744911725" type="System">
+                            <param id="0" name="Count">Ring</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="975052082958064" type="System">
+                            <param id="0" name="Object to create">MapHex</param>
+                            <param id="1" name="Layer">MapLayer</param>
+                            <param id="2" name="X">MapBG.X+(32*Ring)+(32*(YCoord*(-1)))</param>
+                            <param id="3" name="Y">MapBG.Y+(48*ZCoord)</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="549833630044352" type="MapHex">
+                            <param id="0" name="Pin to">MapBG</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="610824114840026" type="MapHex">
+                            <param id="0" name="Instance variable">CoordX</param>
+                            <param id="1" name="Value">Function.Param(0)+XCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="592386018143155" type="MapHex">
+                            <param id="0" name="Instance variable">CoordY</param>
+                            <param id="1" name="Value">Function.Param(1)+YCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="506047020854414" type="MapHex">
+                            <param id="0" name="Instance variable">CoordZ</param>
+                            <param id="1" name="Value">Function.Param(2)+ZCoord</param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="767403835086233" type="System">
+                            <param id="0" name="Variable">YCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="746672906912033" type="System">
+                            <param id="0" name="Variable">ZCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="207729242760693">
+                    <conditions>
+                        <condition id="-12" name="Repeat" sid="130028283240896" type="System">
+                            <param id="0" name="Count">Ring</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="393015143730606" type="System">
+                            <param id="0" name="Object to create">MapHex</param>
+                            <param id="1" name="Layer">MapLayer</param>
+                            <param id="2" name="X">MapBG.X+(32*Ring)-(32*(XCoord*(-1)))</param>
+                            <param id="3" name="Y">MapBG.Y+(48*ZCoord)</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="230759984010900" type="MapHex">
+                            <param id="0" name="Pin to">MapBG</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="153811694671255" type="MapHex">
+                            <param id="0" name="Instance variable">CoordX</param>
+                            <param id="1" name="Value">Function.Param(0)+XCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="412630026965230" type="MapHex">
+                            <param id="0" name="Instance variable">CoordY</param>
+                            <param id="1" name="Value">Function.Param(1)+YCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="853439662798975" type="MapHex">
+                            <param id="0" name="Instance variable">CoordZ</param>
+                            <param id="1" name="Value">Function.Param(2)+ZCoord</param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="329085923463175" type="System">
+                            <param id="0" name="Variable">XCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="124339642050318" type="System">
+                            <param id="0" name="Variable">ZCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="237128145277170">
+                    <conditions>
+                        <condition id="-12" name="Repeat" sid="673947899284410" type="System">
+                            <param id="0" name="Count">Ring</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="167270882389875" type="System">
+                            <param id="0" name="Object to create">MapHex</param>
+                            <param id="1" name="Layer">MapLayer</param>
+                            <param id="2" name="X">MapBG.X+(32*Ring)+(64*XCoord)</param>
+                            <param id="3" name="Y">MapBG.Y+(48*ZCoord)</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="231575909445719" type="MapHex">
+                            <param id="0" name="Pin to">MapBG</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="247797671708630" type="MapHex">
+                            <param id="0" name="Instance variable">CoordX</param>
+                            <param id="1" name="Value">Function.Param(0)+XCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="618990150254557" type="MapHex">
+                            <param id="0" name="Instance variable">CoordY</param>
+                            <param id="1" name="Value">Function.Param(1)+YCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="856733652814896" type="MapHex">
+                            <param id="0" name="Instance variable">CoordZ</param>
+                            <param id="1" name="Value">Function.Param(2)+ZCoord</param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="425405767729441" type="System">
+                            <param id="0" name="Variable">XCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="856305754240227" type="System">
+                            <param id="0" name="Variable">YCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="360137036423605">
+                    <conditions>
+                        <condition id="-12" name="Repeat" sid="547931817554194" type="System">
+                            <param id="0" name="Count">Ring</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="212331310107625" type="System">
+                            <param id="0" name="Object to create">MapHex</param>
+                            <param id="1" name="Layer">MapLayer</param>
+                            <param id="2" name="X">MapBG.X-(32*Ring)-(32*YCoord)</param>
+                            <param id="3" name="Y">MapBG.Y+(48*ZCoord)</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="403799094674613" type="MapHex">
+                            <param id="0" name="Pin to">MapBG</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="790009064296064" type="MapHex">
+                            <param id="0" name="Instance variable">CoordX</param>
+                            <param id="1" name="Value">Function.Param(0)+XCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="900933633952865" type="MapHex">
+                            <param id="0" name="Instance variable">CoordY</param>
+                            <param id="1" name="Value">Function.Param(1)+YCoord</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="810441626790372" type="MapHex">
+                            <param id="0" name="Instance variable">CoordZ</param>
+                            <param id="1" name="Value">Function.Param(2)+ZCoord</param>
+                        </action>
+                        <action id="-10" name="Add to" sid="951379716883360" type="System">
+                            <param id="0" name="Variable">YCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-11" name="Subtract from" sid="655948432512255" type="System">
+                            <param id="0" name="Variable">ZCoord</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="615839838928259">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="233264237157033" type="Mouse">
+                    <param id="0" name="Object">MapHex</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="959487622207722" type="CoordText">
+                    <param id="0" name="Text">&quot;X: &quot;&amp;MapHex.CoordX&amp;&quot; Y: &quot;&amp;MapHex.CoordY&amp;&quot; Z: &quot;&amp;MapHex.CoordZ&amp;&quot; Total: &quot;&amp;(MapHex.CoordX+MapHex.CoordY+MapHex.CoordZ)&amp;&quot; ID: &quot;&amp;MapHex.VillageID&amp;&quot; Name: &quot;&amp;MapHex.Name</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-group description="" sid="708323198759715" title="GetChunk">
+            <sub-events>
+                <event-block sid="755635022531940">
+                    <conditions>
+                        <condition id="0" name="On function" sid="266182866484095" type="Function">
+                            <param id="0" name="Name">&quot;GetChunk&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="4" name="Set request header" sid="291788815172025" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientID&quot;</param>
+                            <param id="1" name="Value">ClientID</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="313872703617893" type="AJAX">
+                            <param id="0" name="Header">&quot;ClientSecret&quot;</param>
+                            <param id="1" name="Value">ClientSecret</param>
+                        </action>
+                        <action id="4" name="Set request header" sid="977532921622177" type="AJAX">
+                            <param id="0" name="Header">&quot;Content-Type&quot;</param>
+                            <param id="1" name="Value">&quot;application/json&quot;</param>
+                        </action>
+                        <action id="0" name="Request URL" sid="618628485680287" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetChunk&quot;</param>
+                            <param id="1" name="URL">&quot;http://localhost:5002/api/village/chunk/&quot;&amp;Function.Param(0)&amp;&quot;/&quot;&amp;Function.Param(1)&amp;&quot;/&quot;&amp;Function.Param(2)&amp;&quot;/&quot;&amp;Function.Param(3)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="571712124378816">
+                    <conditions>
+                        <condition id="1" name="On error" sid="452663528073859" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetChunk&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="14" name="Log" sid="318154761423112" type="Browser">
+                            <param id="0" name="Type">2</param>
+                            <param id="1" name="Message">&quot;Frontend: Unknown Error on GetChunk&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="442052964525509">
+                    <conditions>
+                        <condition id="0" name="On completed" sid="210219743913697" type="AJAX">
+                            <param id="0" name="Tag">&quot;GetChunk&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Clear" sid="160909506848506" type="Dictionary" />
+                        <action id="4" name="Load" sid="617684182753503" type="Dictionary">
+                            <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:&quot;&amp;AJAX.LastData&amp;&quot;}&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="770900582526252" type="Function">
+                            <param id="0" name="Name">&quot;CheckStatus&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;GetChunk&quot;{###}Dictionary.Get(&quot;Status&quot;){###}Dictionary.Get(&quot;Message&quot;)</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <variable constant="0" name="currentString" sid="649047760509870" static="0" type="text"></variable>
+                        <event-block sid="717537713271021">
+                            <conditions>
+                                <condition id="-12" name="Repeat" sid="627381019445832" type="System">
+                                    <param id="0" name="Count">tokencount(replace(tokenat(AJAX.LastData, 1, &quot;[&quot;), &quot;]&quot;, &quot;&quot;), &quot;},{&quot;)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="664518745535546" type="System">
+                                    <param id="0" name="Variable">currentString</param>
+                                    <param id="1" name="Value">&quot;&quot;</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="361340111813134" type="System">
+                                    <param id="0" name="Variable">currentString</param>
+                                    <param id="1" name="Value">replace(replace(tokenat(replace(tokenat(AJAX.LastData, 1, &quot;[&quot;), &quot;]&quot;, &quot;&quot;), loopindex, &quot;},{&quot;), &quot;{&quot;, &quot;&quot;), &quot;}&quot;, &quot;&quot;)</param>
+                                </action>
+                                <action id="3" name="Clear" sid="810112856674424" type="Dictionary" />
+                                <action id="4" name="Load" sid="285258611429036" type="Dictionary">
+                                    <param id="0" name="JSON">&quot;{&quot;&quot;c2dictionary&quot;&quot;:true,&quot;&quot;data&quot;&quot;:{&quot;&amp;currentString&amp;&quot;}}&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="316827297801703">
+                                    <conditions>
+                                        <condition id="-11" name="For Each" sid="524260076868017" type="System">
+                                            <param id="0" name="Object">MapHex</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="283739076685379" type="MapHex">
+                                            <param id="0" name="Instance variable">CoordX</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">Dictionary.Get(&quot;XCoord&quot;)</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="975135151917975" type="MapHex">
+                                            <param id="0" name="Instance variable">CoordY</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">Dictionary.Get(&quot;YCoord&quot;)</param>
+                                        </condition>
+                                        <condition id="-7" name="Compare instance variable" sid="613522348785179" type="MapHex">
+                                            <param id="0" name="Instance variable">CoordZ</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">Dictionary.Get(&quot;ZCoord&quot;)</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="610287308829231" type="MapHex">
+                                            <param id="0" name="Instance variable">VillageID</param>
+                                            <param id="1" name="Value">Dictionary.Get(&quot;VillageID&quot;)</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="531124511437572" type="MapHex">
+                                            <param id="0" name="Instance variable">Name</param>
+                                            <param id="1" name="Value">Dictionary.Get(&quot;Name&quot;)</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="695372960771756">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="940002217297348" type="System">
+                                                    <param id="0" name="First value">Dictionary.Get(&quot;OwnerID&quot;)</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" sid="315271147917033" type="MapHex">
+                                                    <param id="0" name="Animation">&quot;Barbarian&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="924158610653186">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="901848791638571" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" sid="130231984075122" type="MapHex">
+                                                    <param id="0" name="Animation">&quot;Player&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="676193046749621">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="270650003850600" type="System">
+                                    <param id="0" name="First value">Function.ReturnValue</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Log" sid="181555539590876" type="Browser">
+                                    <param id="0" name="Type">0</param>
+                                    <param id="1" name="Message">&quot;Frontend: GetChunk Successful&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-block sid="824578524595593">
+            <conditions>
+                <condition id="0" name="On function" sid="188304041670821" type="Function">
+                    <param id="0" name="Name">&quot;ReloadMap&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="253717022145926">
+                    <conditions>
+                        <condition id="-12" name="Repeat" sid="804576743664162" type="System">
+                            <param id="0" name="Count">Function.Param(0)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="575098261254327" type="Function">
+                            <param id="0" name="Name">&quot;CreateHexRing&quot;</param>
+                            <param id="1" name="Parameter {n}">MapForeground.CoordX{###}MapForeground.CoordY{###}MapForeground.CoordZ{###}MapForeground.ChunkSize+loopindex+1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="876634382715583">
+                    <conditions />
+                    <actions>
+                        <action id="0" name="Call function" sid="836140865306130" type="Function">
+                            <param id="0" name="Name">&quot;GetChunk&quot;</param>
+                            <param id="1" name="Parameter {n}">MapForeground.CoordX{###}MapForeground.CoordY{###}MapForeground.CoordZ{###}MapForeground.ChunkSize+Function.Param(0)</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="283761020881506" type="MapForeground">
+                            <param id="0" name="Instance variable">ChunkSize</param>
+                            <param id="1" name="Value">MapForeground.ChunkSize+Function.Param(0)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="825972328755452">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="357953160338483" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">ButtonBG</param>
+                </condition>
+                <condition id="-7" name="Compare instance variable" sid="471825114074534" type="ButtonBG">
+                    <param id="0" name="Instance variable">Type</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;GenMap&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <event-block sid="957297585111987">
+            <conditions>
+                <condition behavior="DragDrop" id="0" name="Is dragging" sid="171399149197538" type="MapBG" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block any="1" sid="837845596841406">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="224746511129180" type="System">
+                            <param id="0" name="First value">MapBG.OldCenterX-MapBG.X</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">64*(MapForeground.ChunkSize-14)</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="709344737680648" type="System">
+                            <param id="0" name="First value">MapBG.OldCenterY-MapBG.Y</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">64*(MapForeground.ChunkSize-14)</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="833777643025321" type="System">
+                            <param id="0" name="First value">(MapBG.OldCenterX-MapBG.X)+(MapBG.OldCenterY-MapBG.Y)</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Second value">64*(MapForeground.ChunkSize-14)</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="188975752106447" type="System">
+                            <param id="0" name="First value">MapBG.OldCenterX-MapBG.X</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">-64*(MapForeground.ChunkSize-14)</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="548194417406917" type="System">
+                            <param id="0" name="First value">MapBG.OldCenterY-MapBG.Y</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">-64*(MapForeground.ChunkSize-14)</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="981094309979995" type="System">
+                            <param id="0" name="First value">(MapBG.OldCenterX-MapBG.X)+(MapBG.OldCenterY-MapBG.Y)</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Second value">-64*(MapForeground.ChunkSize-14)</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="230458432365820" type="Function">
+                            <param id="0" name="Name">&quot;ReloadMap&quot;</param>
+                            <param id="1" name="Parameter {n}">5</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
     </events>
 </c2eventsheet>
